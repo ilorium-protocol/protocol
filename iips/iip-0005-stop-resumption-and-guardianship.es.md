@@ -7,7 +7,7 @@
 | Número | IIP-0005 |
 | Título | Parada, reanudación y guardia |
 | Autor | El fundador (Seldon), con Claude (IA, identificada como tal) |
-| Estado | Borrador; se abre a comentarios públicos cuando se publique el repositorio |
+| Estado | En comentario del 2026-10-27 al 2026-11-26 (30 días). Discusión: https://github.com/ilorium-protocol/protocol/discussions/6 |
 | Tipo | Cambio de método a `governance-v1.md`, sección 5, y una nota de especificación a la Spore (`stop_key_holders`) en `specs/evidence-format-v1.md` (30 días) |
 | Afecta | Gobierno, secciones 2 (vínculos), 5.1–5.5; la Spore; Vital Signs (estado de guardia) |
 | Decide | El fundador, como único Custodio durante el gobierno provisorio, en público, después del período de comentarios |

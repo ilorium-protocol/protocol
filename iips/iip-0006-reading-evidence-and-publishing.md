@@ -5,7 +5,7 @@
 | Number | IIP-0006 |
 | Title | Reading evidence, status names and publishing |
 | Author | The founder (Seldon), with Claude (AI, identified as such) |
-| Status | Draft, opens for public comment when the repository is published |
+| Status | In comment from 2026-10-27 to 2026-11-26 (30 days). Discussion: https://github.com/ilorium-protocol/protocol/discussions/7 |
 | Kind | Method change to `specs/proof-of-life-v1.md` (the composite status), specification additions to `specs/evidence-format-v1.md` (reading rules) and to `governance-v1.md` sections 3.2.6 and 9 (approvals bound to content; authority inventory) (30 days, because governance is affected) |
 | Affects | Proof of Life; Evidence Format verdicts; Vital Signs; glossary; governance 3.2.6 and 9 |
 | Decides | The founder, as the only Custodian during interim governance, in public, after the comment period |

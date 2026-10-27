@@ -7,7 +7,7 @@
 | Número | IIP-0004 |
 | Título | Gobierno provisorio, Custodios y cambios constitucionales |
 | Autor | El fundador (Seldon), con Claude (IA, identificada como tal) |
-| Estado | Borrador; se abre a comentarios públicos cuando se publique el repositorio |
+| Estado | En comentario del 2026-10-27 al 2027-01-25 (90 días). Discusión: https://github.com/ilorium-protocol/protocol/discussions/5 |
 | Tipo | Cambio de método a `governance-v1.md`; toca la sección 10, así que lleva el período de comentarios reforzado: **90 días** *(corregido el 2026-10-24; el primer borrador decía 30)* |
 | Afecta | Gobierno, secciones 2, 3.1, 3.2, 3.4, 4.2–4.6, 7, 8, 10 |
 | Decide | El fundador, como único Custodio durante el gobierno provisorio, en público, después del período de comentarios, y solo para confirmar, acotar o retirar; las reglas constitucionales (punto 10) las ratifica después el consejo pleno |
