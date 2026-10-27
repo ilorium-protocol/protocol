@@ -5,7 +5,7 @@
 | Number | IIP-0004 |
 | Title | Interim governance, Custodians and constitutional changes |
 | Author | The founder (Seldon), with Claude (AI, identified as such) |
-| Status | Draft, opens for public comment when the repository is published |
+| Status | In comment from 2026-10-27 to 2027-01-25 (90 days). Discussion: https://github.com/ilorium-protocol/protocol/discussions/5 |
 | Kind | Method change to `governance-v1.md`; it touches section 10, so it takes the reinforced comment period: **90 days** *(corrected 2026-10-24; the first draft said 30)* |
 | Affects | Governance sections 2, 3.1, 3.2, 3.4, 4.2–4.6, 7, 8, 10 |
 | Decides | The founder, as the only Custodian during interim governance, in public, after the comment period, and only to confirm, narrow or withdraw; the constitutional rules (point 10) are ratified later by the full council |

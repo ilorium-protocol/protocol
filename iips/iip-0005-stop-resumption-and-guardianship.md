@@ -5,7 +5,7 @@
 | Number | IIP-0005 |
 | Title | Stop, resumption and guardianship |
 | Author | The founder (Seldon), with Claude (AI, identified as such) |
-| Status | Draft, opens for public comment when the repository is published |
+| Status | In comment from 2026-10-27 to 2026-11-26 (30 days). Discussion: https://github.com/ilorium-protocol/protocol/discussions/6 |
 | Kind | Method change to `governance-v1.md`, section 5, and a specification note to the Spore (`stop_key_holders`) in `specs/evidence-format-v1.md` (30 days) |
 | Affects | Governance sections 2 (ties), 5.1–5.5; the Spore; Vital Signs (guardianship state) |
 | Decides | The founder, as the only Custodian during interim governance, in public, after the comment period |

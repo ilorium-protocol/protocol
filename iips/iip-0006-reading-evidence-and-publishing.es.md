@@ -7,7 +7,7 @@
 | Número | IIP-0006 |
 | Título | Lectura de la evidencia, nombres de estado y publicación |
 | Autor | El fundador (Seldon), con Claude (IA, identificada como tal) |
-| Estado | Borrador; se abre a comentarios públicos cuando se publique el repositorio |
+| Estado | En comentario del 2026-10-27 al 2026-11-26 (30 días). Discusión: https://github.com/ilorium-protocol/protocol/discussions/7 |
 | Tipo | Cambio de método a `specs/proof-of-life-v1.md` (el estado compuesto), agregados de especificación a `specs/evidence-format-v1.md` (reglas de lectura) y a `governance-v1.md`, secciones 3.2.6 y 9 (aprobaciones atadas al contenido; inventario de autoridad) (30 días, porque afecta al gobierno) |
 | Afecta | Prueba de Vida; veredictos del Formato de evidencia; Vital Signs; glosario; gobierno 3.2.6 y 9 |
 | Decide | El fundador, como único Custodio durante el gobierno provisorio, en público, después del período de comentarios |
