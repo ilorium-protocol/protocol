@@ -1,0 +1,357 @@
+{
+ "vector": "1.0",
+ "operation": "verify_signed_note",
+ "spec": "Evidence Format 1.0 section 7",
+ "description": "C2SP signed notes and cosignatures under the Ilorium algorithm profile.",
+ "cases": [
+  {
+   "id": "c2sp-example",
+   "description": "EXTERNAL: the example in c2sp.org/signed-note@v1.1.0, produced by another implementation",
+   "input": {
+    "note": "This is an example message.\n\n\u2014 example.com/foo Uw2QOkn8srV1yJGh2VYRlL1Tnagv1YEq6TfXppzi2ONncAlTgK7Ztg1ERYNZXsYjOBH3mFXmRKuwHjG1Yu72IneyaQM=\n",
+    "vkeys": [
+     "example.com/foo+530d903a+AekyeRrm56hApGFkyQR4ZCbV54Id2LKaANYcrnKv3U2k"
+    ]
+   },
+   "expect": {
+    "verdict": "PASS",
+    "verified": [
+     "example.com/foo"
+    ]
+   }
+  },
+  {
+   "id": "c2sp-example-text-tampered",
+   "description": "",
+   "input": {
+    "note": "This is an exampl3 message.\n\n\u2014 example.com/foo Uw2QOkn8srV1yJGh2VYRlL1Tnagv1YEq6TfXppzi2ONncAlTgK7Ztg1ERYNZXsYjOBH3mFXmRKuwHjG1Yu72IneyaQM=\n",
+    "vkeys": [
+     "example.com/foo+530d903a+AekyeRrm56hApGFkyQR4ZCbV54Id2LKaANYcrnKv3U2k"
+    ]
+   },
+   "expect": {
+    "verdict": "FAIL"
+   }
+  },
+  {
+   "id": "c2sp-example-signature-tampered",
+   "description": "",
+   "input": {
+    "note": "This is an example message.\n\n\u2014 example.com/foo Uw2QOkn8srV1yJGh2VYRlL1Tnagv1YEq7TfXppzi2ONncAlTgK7Ztg1ERYNZXsYjOBH3mFXmRKuwHjG1Yu72IneyaQM=\n",
+    "vkeys": [
+     "example.com/foo+530d903a+AekyeRrm56hApGFkyQR4ZCbV54Id2LKaANYcrnKv3U2k"
+    ]
+   },
+   "expect": {
+    "verdict": "FAIL"
+   }
+  },
+  {
+   "id": "c2sp-example-unknown-key",
+   "description": "no configured key signed the note",
+   "input": {
+    "note": "This is an example message.\n\n\u2014 example.com/foo Uw2QOkn8srV1yJGh2VYRlL1Tnagv1YEq6TfXppzi2ONncAlTgK7Ztg1ERYNZXsYjOBH3mFXmRKuwHjG1Yu72IneyaQM=\n",
+    "vkeys": [
+     "ilorium.example/strata/organism-test+a4dc9520+AVpa7n4gmVgpS9lIYtGO/vxpPTYVHNf97CkPlTSYFlSr"
+    ]
+   },
+   "expect": {
+    "verdict": "FAIL"
+   }
+  },
+  {
+   "id": "c2sp-example-no-keys",
+   "description": "",
+   "input": {
+    "note": "This is an example message.\n\n\u2014 example.com/foo Uw2QOkn8srV1yJGh2VYRlL1Tnagv1YEq6TfXppzi2ONncAlTgK7Ztg1ERYNZXsYjOBH3mFXmRKuwHjG1Yu72IneyaQM=\n",
+    "vkeys": []
+   },
+   "expect": {
+    "verdict": "FAIL"
+   }
+  },
+  {
+   "id": "ilorium-checkpoint-log-signature",
+   "description": "",
+   "input": {
+    "note": "ilorium.example/strata/organism-test\n8\nOS95jqEleRB1KyHo9JwCiV+/N4+vBeMvBvLSi3uUJtM=\n\n\u2014 ilorium.example/strata/organism-test pNyVIEaBDurGfikzNm4pHilAH3vUvteUPB35yXLGy0cz1Pd6cZ2Ef96QP/fATvXw7r1xAaeaSZzbJIC4CY6X2IIiUgI=\n",
+    "vkeys": [
+     "ilorium.example/strata/organism-test+a4dc9520+AVpa7n4gmVgpS9lIYtGO/vxpPTYVHNf97CkPlTSYFlSr"
+    ]
+   },
+   "expect": {
+    "verdict": "PASS",
+    "verified": [
+     "ilorium.example/strata/organism-test"
+    ]
+   }
+  },
+  {
+   "id": "log-signature-flipped",
+   "description": "",
+   "input": {
+    "note": "ilorium.example/strata/organism-test\n8\nOS95jqEleRB1KyHo9JwCiV+/N4+vBeMvBvLSi3uUJtM=\n\n\u2014 ilorium.example/strata/organism-test pNyVIEeBDurGfikzNm4pHilAH3vUvteUPB35yXLGy0cz1Pd6cZ2Ef96QP/fATvXw7r1xAaeaSZzbJIC4CY6X2IIiUgI=\n",
+    "vkeys": [
+     "ilorium.example/strata/organism-test+a4dc9520+AVpa7n4gmVgpS9lIYtGO/vxpPTYVHNf97CkPlTSYFlSr"
+    ]
+   },
+   "expect": {
+    "verdict": "FAIL"
+   }
+  },
+  {
+   "id": "log-signature-other-key-same-name",
+   "description": "key id differs, so the signature is from an unknown key",
+   "input": {
+    "note": "ilorium.example/strata/organism-test\n8\nOS95jqEleRB1KyHo9JwCiV+/N4+vBeMvBvLSi3uUJtM=\n\n\u2014 ilorium.example/strata/organism-test teb/zEd4a+t4mt6ibxwQ8QXfCpKYBeRygRgXApKwxNYoA/qkJ60o48d5vEq1BH6Pl4J2WqX7RckiWUF8pSHUXYMdjww=\n",
+    "vkeys": [
+     "ilorium.example/strata/organism-test+a4dc9520+AVpa7n4gmVgpS9lIYtGO/vxpPTYVHNf97CkPlTSYFlSr"
+    ]
+   },
+   "expect": {
+    "verdict": "FAIL"
+   }
+  },
+  {
+   "id": "known-key-bad-plus-good",
+   "description": "a failing signature from a known key rejects the note even if another verifies",
+   "input": {
+    "note": "ilorium.example/strata/organism-test\n8\nOS95jqEleRB1KyHo9JwCiV+/N4+vBeMvBvLSi3uUJtM=\n\n\u2014 ilorium.example/strata/organism-test pNyVIEeBDurGfikzNm4pHilAH3vUvteUPB35yXLGy0cz1Pd6cZ2Ef96QP/fATvXw7r1xAaeaSZzbJIC4CY6X2IIiUgI=\n\u2014 witness-a.example/w rSYrOgAAAABq6eoRPwMxgdA78SFfy525X6x/5cK6poVqpW8IfJghpq6rcXwdHJVjl+G58YVtW9jMkep5eBgzHTCmyPWlsf45MlqpAg==\n",
+    "vkeys": [
+     "ilorium.example/strata/organism-test+a4dc9520+AVpa7n4gmVgpS9lIYtGO/vxpPTYVHNf97CkPlTSYFlSr",
+     "witness-a.example/w+ad262b3a+BBJAJ1nBjvwyM45/9kFW8oPzx3HWDcxDNG5TGthxQx3H"
+    ]
+   },
+   "expect": {
+    "verdict": "FAIL"
+   }
+  },
+  {
+   "id": "unknown-plus-known",
+   "description": "signatures from unknown keys are ignored",
+   "input": {
+    "note": "ilorium.example/strata/organism-test\n8\nOS95jqEleRB1KyHo9JwCiV+/N4+vBeMvBvLSi3uUJtM=\n\n\u2014 witness-d.example/w tGkKoQAAAABq6eoR6qCv436Hf2zpnnyc3cB4HbhI6t+Y2ij6a5PhmslRSfjueBo2kNb0vk+gJp07KDV4U+r9/nYeb/SRH4QkyKsjCw==\n\u2014 ilorium.example/strata/organism-test pNyVIEaBDurGfikzNm4pHilAH3vUvteUPB35yXLGy0cz1Pd6cZ2Ef96QP/fATvXw7r1xAaeaSZzbJIC4CY6X2IIiUgI=\n",
+    "vkeys": [
+     "ilorium.example/strata/organism-test+a4dc9520+AVpa7n4gmVgpS9lIYtGO/vxpPTYVHNf97CkPlTSYFlSr"
+    ]
+   },
+   "expect": {
+    "verdict": "PASS",
+    "verified": [
+     "ilorium.example/strata/organism-test"
+    ]
+   }
+  },
+  {
+   "id": "ed25519-cosignature",
+   "description": "",
+   "input": {
+    "note": "ilorium.example/strata/organism-test\n8\nOS95jqEleRB1KyHo9JwCiV+/N4+vBeMvBvLSi3uUJtM=\n\n\u2014 witness-a.example/w rSYrOgAAAABq6eoRPwMxgdA78SFfy525X6x/5cK6poVqpW8IfJghpq6rcXwdHJVjl+G58YVtW9jMkep5eBgzHTCmyPWlsf45MlqpAg==\n",
+    "vkeys": [
+     "witness-a.example/w+ad262b3a+BBJAJ1nBjvwyM45/9kFW8oPzx3HWDcxDNG5TGthxQx3H"
+    ]
+   },
+   "expect": {
+    "verdict": "PASS",
+    "verified": [
+     "witness-a.example/w"
+    ]
+   }
+  },
+  {
+   "id": "ed25519-cosignature-wrong-size",
+   "description": "the cosignature binds the tree size",
+   "input": {
+    "note": "ilorium.example/strata/organism-test\n9\nOS95jqEleRB1KyHo9JwCiV+/N4+vBeMvBvLSi3uUJtM=\n\n\u2014 witness-a.example/w rSYrOgAAAABq6eoRPwMxgdA78SFfy525X6x/5cK6poVqpW8IfJghpq6rcXwdHJVjl+G58YVtW9jMkep5eBgzHTCmyPWlsf45MlqpAg==\n",
+    "vkeys": [
+     "witness-a.example/w+ad262b3a+BBJAJ1nBjvwyM45/9kFW8oPzx3HWDcxDNG5TGthxQx3H"
+    ]
+   },
+   "expect": {
+    "verdict": "FAIL"
+   }
+  },
+  {
+   "id": "ed25519-cosignature-flipped",
+   "description": "",
+   "input": {
+    "note": "ilorium.example/strata/organism-test\n8\nOS95jqEleRB1KyHo9JwCiV+/N4+vBeMvBvLSi3uUJtM=\n\n\u2014 witness-a.example/w rSYrOgAAAABq6eoRPgMxgdA78SFfy525X6x/5cK6poVqpW8IfJghpq6rcXwdHJVjl+G58YVtW9jMkep5eBgzHTCmyPWlsf45MlqpAg==\n",
+    "vkeys": [
+     "witness-a.example/w+ad262b3a+BBJAJ1nBjvwyM45/9kFW8oPzx3HWDcxDNG5TGthxQx3H"
+    ]
+   },
+   "expect": {
+    "verdict": "FAIL"
+   }
+  },
+  {
+   "id": "mldsa44-cosignature",
+   "description": "ML-DSA-44; signed with dilithium-py in the deterministic mode of FIPS 204; verified by the OpenSSL-backed verifier, an independent implementation",
+   "input": {
+    "note": "ilorium.example/strata/organism-test\n8\nOS95jqEleRB1KyHo9JwCiV+/N4+vBeMvBvLSi3uUJtM=\n\n\u2014 witness-b.example/w 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\n",
+    "vkeys": [
+     "witness-b.example/w+387a905f+BlcEbmXvfa6foTinKuoq9cfgXbiDG9fjMwSIx5H8Uxqk8HG1plUOsAV8SjMjz6B6hyMpdxKKM3BDXC0ZAOXK/+oQxm8o0PG2XZsbM2TtpuNl3ET5mjzi7DvnXk0WIt4LyMBJzu5Ax79AIJm63CMjUOxkQglujxThekosS4Or7vK1TKhefOjsU1FEvODIrSIPHDk2HlkdtawEaTEmKiYNTzhep8NlcZeKjoL9QhwE5XI5YsVrTKOEZMjm0GEInx1O0VBDf/B4LtpgMVng4FixOnY6mZLlIelVCLgh966rLDbGOFGph0tCD+ZzvIMz02bT0LfPN/bHKDPXKCt9PZYoeWBjIPyHC3ufuIsXsxx7OS+XaKhqHZdAFwFJ7TsPisdJMfSvNDxzrOtuu45B9aeod2Q10pEoFYlji0pbm+UfZBuTRjHrZ+BrHEgT5s40KpW587e2GzhfKDGWydg+LWJnvdrh/5eF7kHuoiONJBY8ey38DkT6FkbXOl0IPFLvZSD5WCCiKeDW32pYV4CDiYAPUZh2B7z2rTnXhFS/YqMTS5u2BAFetaqVc3iN8PySI02pDe+pATbKHWfLHbow/1Xr+y0p1dnhUxN2NNwSjgLE9uqQGw6UW3+5pMhSSHEmK18h2Fx2CO92dC2M1M3e6CTyh5rU9yOmNryI46DayAD6wba9i2xKtqRnCqXCarXM3Sqil3i+npDA/b249qqLiJsEAqpM2cyYVKVeVuxeGVu88J3UCnZ0EIdotbYZ7wJeCCXThF5BzqYYbjjPFa4/m4TqewI8rcwBVhsmBbwK7AAp/O1GZI3fjwk9ZoKo+16CR/U9AjlOtmSECdZVd6MpGq5SvkU5iegk0BU2GpZlI4gC292KFaQXu2Sfo6lv77pROGipcwGnabqS/Zq4jRMgbU0h/sb8dhC7bxU9M+9jn46mAjf4IP9J1REcpPWf4+FskvlGGi1kxWx8HbwBAbFcI8ypzLeclen3tK1LLQwOBI1tComtaTUxXjC44SYLvPYysRayFACdVaILb3ZMByN484qYVZ5+w/RplBPWEAsZNos4yNtqpDBsrK3eZh8CYN2ZxCuebm40gQa2Ag3MlQrHErPlmKy1hCa7KiR+Zb+TZR8+rsWPVmlGOb0QXIEale1kXLXXVeAHtBZWmenNukxesbsqrnVJ4RD9gptKmpqPmuzpEH26J/XHF/3IxM5F/tbmUdLcFciRI1OVZHrTk0/YY7knBlwyC9Q/BS+YnXJf6gysk3CkTo08Us0EJ/fR0i3dmnmHltyK+VUjK0Y+ckGcy8fpFyusjbbkM2V2biX5WrP9iHByz16tD7D5bnv7j4u0pP1i1Yardb9SoFkSmD1QrbVQt4jXikgtGt9HNQycdF8S8S4ezQufSbQwvonevFjq7I2aXKr0+tcuv0cPqjejc0XNH+IaRHXfL8J9igestujqtvPbmhUIpeVCYvj54TS9AeH5AVlga/Yz8C3VAeCxQLv8LE5wcJnCIqOhezH7Un8sPgmQBmaCBE2Txqd/drrmzkmc5e9pb5yB9tzAIbgZq67bcYjko2luegGJWNQ1Rd53Ng/r4DrbWuIAoApD8Y4UgZVg1M3D8IB74gbeKv8XnwbwBzKL4CwiZPCOg7VXvTDaIoSQyi52duCY808f7/Qv8XgKGRUc4GoIdut5+pDHmxNu/4onHgV+4RccPdvCZCxPflP+yLr86/2czCHexuw3KqzKWxWVO67NhcS6XAfJTbhPDkg="
+    ]
+   },
+   "expect": {
+    "verdict": "PASS",
+    "verified": [
+     "witness-b.example/w"
+    ]
+   }
+  },
+  {
+   "id": "mldsa44-cosignature-flipped",
+   "description": "",
+   "input": {
+    "note": "ilorium.example/strata/organism-test\n8\nOS95jqEleRB1KyHo9JwCiV+/N4+vBeMvBvLSi3uUJtM=\n\n\u2014 witness-b.example/w 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\n",
+    "vkeys": [
+     "witness-b.example/w+387a905f+BlcEbmXvfa6foTinKuoq9cfgXbiDG9fjMwSIx5H8Uxqk8HG1plUOsAV8SjMjz6B6hyMpdxKKM3BDXC0ZAOXK/+oQxm8o0PG2XZsbM2TtpuNl3ET5mjzi7DvnXk0WIt4LyMBJzu5Ax79AIJm63CMjUOxkQglujxThekosS4Or7vK1TKhefOjsU1FEvODIrSIPHDk2HlkdtawEaTEmKiYNTzhep8NlcZeKjoL9QhwE5XI5YsVrTKOEZMjm0GEInx1O0VBDf/B4LtpgMVng4FixOnY6mZLlIelVCLgh966rLDbGOFGph0tCD+ZzvIMz02bT0LfPN/bHKDPXKCt9PZYoeWBjIPyHC3ufuIsXsxx7OS+XaKhqHZdAFwFJ7TsPisdJMfSvNDxzrOtuu45B9aeod2Q10pEoFYlji0pbm+UfZBuTRjHrZ+BrHEgT5s40KpW587e2GzhfKDGWydg+LWJnvdrh/5eF7kHuoiONJBY8ey38DkT6FkbXOl0IPFLvZSD5WCCiKeDW32pYV4CDiYAPUZh2B7z2rTnXhFS/YqMTS5u2BAFetaqVc3iN8PySI02pDe+pATbKHWfLHbow/1Xr+y0p1dnhUxN2NNwSjgLE9uqQGw6UW3+5pMhSSHEmK18h2Fx2CO92dC2M1M3e6CTyh5rU9yOmNryI46DayAD6wba9i2xKtqRnCqXCarXM3Sqil3i+npDA/b249qqLiJsEAqpM2cyYVKVeVuxeGVu88J3UCnZ0EIdotbYZ7wJeCCXThF5BzqYYbjjPFa4/m4TqewI8rcwBVhsmBbwK7AAp/O1GZI3fjwk9ZoKo+16CR/U9AjlOtmSECdZVd6MpGq5SvkU5iegk0BU2GpZlI4gC292KFaQXu2Sfo6lv77pROGipcwGnabqS/Zq4jRMgbU0h/sb8dhC7bxU9M+9jn46mAjf4IP9J1REcpPWf4+FskvlGGi1kxWx8HbwBAbFcI8ypzLeclen3tK1LLQwOBI1tComtaTUxXjC44SYLvPYysRayFACdVaILb3ZMByN484qYVZ5+w/RplBPWEAsZNos4yNtqpDBsrK3eZh8CYN2ZxCuebm40gQa2Ag3MlQrHErPlmKy1hCa7KiR+Zb+TZR8+rsWPVmlGOb0QXIEale1kXLXXVeAHtBZWmenNukxesbsqrnVJ4RD9gptKmpqPmuzpEH26J/XHF/3IxM5F/tbmUdLcFciRI1OVZHrTk0/YY7knBlwyC9Q/BS+YnXJf6gysk3CkTo08Us0EJ/fR0i3dmnmHltyK+VUjK0Y+ckGcy8fpFyusjbbkM2V2biX5WrP9iHByz16tD7D5bnv7j4u0pP1i1Yardb9SoFkSmD1QrbVQt4jXikgtGt9HNQycdF8S8S4ezQufSbQwvonevFjq7I2aXKr0+tcuv0cPqjejc0XNH+IaRHXfL8J9igestujqtvPbmhUIpeVCYvj54TS9AeH5AVlga/Yz8C3VAeCxQLv8LE5wcJnCIqOhezH7Un8sPgmQBmaCBE2Txqd/drrmzkmc5e9pb5yB9tzAIbgZq67bcYjko2luegGJWNQ1Rd53Ng/r4DrbWuIAoApD8Y4UgZVg1M3D8IB74gbeKv8XnwbwBzKL4CwiZPCOg7VXvTDaIoSQyi52duCY808f7/Qv8XgKGRUc4GoIdut5+pDHmxNu/4onHgV+4RccPdvCZCxPflP+yLr86/2czCHexuw3KqzKWxWVO67NhcS6XAfJTbhPDkg="
+    ]
+   },
+   "expect": {
+    "verdict": "FAIL"
+   }
+  },
+  {
+   "id": "mldsa44-cosignature-wrong-root",
+   "description": "",
+   "input": {
+    "note": "ilorium.example/strata/organism-test\n8\n2SmKENGwc1g33EvYXaxkGw887yekfl1TpU8vP1svz/o=\n\n\u2014 witness-b.example/w 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\n",
+    "vkeys": [
+     "witness-b.example/w+387a905f+BlcEbmXvfa6foTinKuoq9cfgXbiDG9fjMwSIx5H8Uxqk8HG1plUOsAV8SjMjz6B6hyMpdxKKM3BDXC0ZAOXK/+oQxm8o0PG2XZsbM2TtpuNl3ET5mjzi7DvnXk0WIt4LyMBJzu5Ax79AIJm63CMjUOxkQglujxThekosS4Or7vK1TKhefOjsU1FEvODIrSIPHDk2HlkdtawEaTEmKiYNTzhep8NlcZeKjoL9QhwE5XI5YsVrTKOEZMjm0GEInx1O0VBDf/B4LtpgMVng4FixOnY6mZLlIelVCLgh966rLDbGOFGph0tCD+ZzvIMz02bT0LfPN/bHKDPXKCt9PZYoeWBjIPyHC3ufuIsXsxx7OS+XaKhqHZdAFwFJ7TsPisdJMfSvNDxzrOtuu45B9aeod2Q10pEoFYlji0pbm+UfZBuTRjHrZ+BrHEgT5s40KpW587e2GzhfKDGWydg+LWJnvdrh/5eF7kHuoiONJBY8ey38DkT6FkbXOl0IPFLvZSD5WCCiKeDW32pYV4CDiYAPUZh2B7z2rTnXhFS/YqMTS5u2BAFetaqVc3iN8PySI02pDe+pATbKHWfLHbow/1Xr+y0p1dnhUxN2NNwSjgLE9uqQGw6UW3+5pMhSSHEmK18h2Fx2CO92dC2M1M3e6CTyh5rU9yOmNryI46DayAD6wba9i2xKtqRnCqXCarXM3Sqil3i+npDA/b249qqLiJsEAqpM2cyYVKVeVuxeGVu88J3UCnZ0EIdotbYZ7wJeCCXThF5BzqYYbjjPFa4/m4TqewI8rcwBVhsmBbwK7AAp/O1GZI3fjwk9ZoKo+16CR/U9AjlOtmSECdZVd6MpGq5SvkU5iegk0BU2GpZlI4gC292KFaQXu2Sfo6lv77pROGipcwGnabqS/Zq4jRMgbU0h/sb8dhC7bxU9M+9jn46mAjf4IP9J1REcpPWf4+FskvlGGi1kxWx8HbwBAbFcI8ypzLeclen3tK1LLQwOBI1tComtaTUxXjC44SYLvPYysRayFACdVaILb3ZMByN484qYVZ5+w/RplBPWEAsZNos4yNtqpDBsrK3eZh8CYN2ZxCuebm40gQa2Ag3MlQrHErPlmKy1hCa7KiR+Zb+TZR8+rsWPVmlGOb0QXIEale1kXLXXVeAHtBZWmenNukxesbsqrnVJ4RD9gptKmpqPmuzpEH26J/XHF/3IxM5F/tbmUdLcFciRI1OVZHrTk0/YY7knBlwyC9Q/BS+YnXJf6gysk3CkTo08Us0EJ/fR0i3dmnmHltyK+VUjK0Y+ckGcy8fpFyusjbbkM2V2biX5WrP9iHByz16tD7D5bnv7j4u0pP1i1Yardb9SoFkSmD1QrbVQt4jXikgtGt9HNQycdF8S8S4ezQufSbQwvonevFjq7I2aXKr0+tcuv0cPqjejc0XNH+IaRHXfL8J9igestujqtvPbmhUIpeVCYvj54TS9AeH5AVlga/Yz8C3VAeCxQLv8LE5wcJnCIqOhezH7Un8sPgmQBmaCBE2Txqd/drrmzkmc5e9pb5yB9tzAIbgZq67bcYjko2luegGJWNQ1Rd53Ng/r4DrbWuIAoApD8Y4UgZVg1M3D8IB74gbeKv8XnwbwBzKL4CwiZPCOg7VXvTDaIoSQyi52duCY808f7/Qv8XgKGRUc4GoIdut5+pDHmxNu/4onHgV+4RccPdvCZCxPflP+yLr86/2czCHexuw3KqzKWxWVO67NhcS6XAfJTbhPDkg="
+    ]
+   },
+   "expect": {
+    "verdict": "FAIL"
+   }
+  },
+  {
+   "id": "two-witnesses",
+   "description": "",
+   "input": {
+    "note": "ilorium.example/strata/organism-test\n8\nOS95jqEleRB1KyHo9JwCiV+/N4+vBeMvBvLSi3uUJtM=\n\n\u2014 witness-a.example/w rSYrOgAAAABq6eoRPwMxgdA78SFfy525X6x/5cK6poVqpW8IfJghpq6rcXwdHJVjl+G58YVtW9jMkep5eBgzHTCmyPWlsf45MlqpAg==\n\u2014 witness-b.example/w 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\n",
+    "vkeys": [
+     "witness-a.example/w+ad262b3a+BBJAJ1nBjvwyM45/9kFW8oPzx3HWDcxDNG5TGthxQx3H",
+     "witness-b.example/w+387a905f+BlcEbmXvfa6foTinKuoq9cfgXbiDG9fjMwSIx5H8Uxqk8HG1plUOsAV8SjMjz6B6hyMpdxKKM3BDXC0ZAOXK/+oQxm8o0PG2XZsbM2TtpuNl3ET5mjzi7DvnXk0WIt4LyMBJzu5Ax79AIJm63CMjUOxkQglujxThekosS4Or7vK1TKhefOjsU1FEvODIrSIPHDk2HlkdtawEaTEmKiYNTzhep8NlcZeKjoL9QhwE5XI5YsVrTKOEZMjm0GEInx1O0VBDf/B4LtpgMVng4FixOnY6mZLlIelVCLgh966rLDbGOFGph0tCD+ZzvIMz02bT0LfPN/bHKDPXKCt9PZYoeWBjIPyHC3ufuIsXsxx7OS+XaKhqHZdAFwFJ7TsPisdJMfSvNDxzrOtuu45B9aeod2Q10pEoFYlji0pbm+UfZBuTRjHrZ+BrHEgT5s40KpW587e2GzhfKDGWydg+LWJnvdrh/5eF7kHuoiONJBY8ey38DkT6FkbXOl0IPFLvZSD5WCCiKeDW32pYV4CDiYAPUZh2B7z2rTnXhFS/YqMTS5u2BAFetaqVc3iN8PySI02pDe+pATbKHWfLHbow/1Xr+y0p1dnhUxN2NNwSjgLE9uqQGw6UW3+5pMhSSHEmK18h2Fx2CO92dC2M1M3e6CTyh5rU9yOmNryI46DayAD6wba9i2xKtqRnCqXCarXM3Sqil3i+npDA/b249qqLiJsEAqpM2cyYVKVeVuxeGVu88J3UCnZ0EIdotbYZ7wJeCCXThF5BzqYYbjjPFa4/m4TqewI8rcwBVhsmBbwK7AAp/O1GZI3fjwk9ZoKo+16CR/U9AjlOtmSECdZVd6MpGq5SvkU5iegk0BU2GpZlI4gC292KFaQXu2Sfo6lv77pROGipcwGnabqS/Zq4jRMgbU0h/sb8dhC7bxU9M+9jn46mAjf4IP9J1REcpPWf4+FskvlGGi1kxWx8HbwBAbFcI8ypzLeclen3tK1LLQwOBI1tComtaTUxXjC44SYLvPYysRayFACdVaILb3ZMByN484qYVZ5+w/RplBPWEAsZNos4yNtqpDBsrK3eZh8CYN2ZxCuebm40gQa2Ag3MlQrHErPlmKy1hCa7KiR+Zb+TZR8+rsWPVmlGOb0QXIEale1kXLXXVeAHtBZWmenNukxesbsqrnVJ4RD9gptKmpqPmuzpEH26J/XHF/3IxM5F/tbmUdLcFciRI1OVZHrTk0/YY7knBlwyC9Q/BS+YnXJf6gysk3CkTo08Us0EJ/fR0i3dmnmHltyK+VUjK0Y+ckGcy8fpFyusjbbkM2V2biX5WrP9iHByz16tD7D5bnv7j4u0pP1i1Yardb9SoFkSmD1QrbVQt4jXikgtGt9HNQycdF8S8S4ezQufSbQwvonevFjq7I2aXKr0+tcuv0cPqjejc0XNH+IaRHXfL8J9igestujqtvPbmhUIpeVCYvj54TS9AeH5AVlga/Yz8C3VAeCxQLv8LE5wcJnCIqOhezH7Un8sPgmQBmaCBE2Txqd/drrmzkmc5e9pb5yB9tzAIbgZq67bcYjko2luegGJWNQ1Rd53Ng/r4DrbWuIAoApD8Y4UgZVg1M3D8IB74gbeKv8XnwbwBzKL4CwiZPCOg7VXvTDaIoSQyi52duCY808f7/Qv8XgKGRUc4GoIdut5+pDHmxNu/4onHgV+4RccPdvCZCxPflP+yLr86/2czCHexuw3KqzKWxWVO67NhcS6XAfJTbhPDkg="
+    ]
+   },
+   "expect": {
+    "verdict": "PASS",
+    "verified": [
+     "witness-a.example/w",
+     "witness-b.example/w"
+    ]
+   }
+  },
+  {
+   "id": "unsupported-algorithm-only",
+   "description": "ECDSA (type 0x02) is not in the initial profile: UNKNOWN, never PASS and never silently dropped",
+   "input": {
+    "note": "ilorium.example/strata/organism-test\n8\nOS95jqEleRB1KyHo9JwCiV+/N4+vBeMvBvLSi3uUJtM=\n\n\u2014 witness-c.example/w Q2wZvwAAAABq6eoRmphkL9Jx2lXdC6VWIXbSBV0TuumG59+8Y6icPK9bfhiamGQv0nHaVd0LpVYhdtIFXRO66Ybn37xjqJw8r1t+GA==\n",
+    "vkeys": [
+     "witness-c.example/w+436c19bf+AjBZMBMGByqGSM49AgEGCCqGSM49AwEHA0IABIMO7uywy5wEyUs2fIBoXQdYLSqOGY293/B5Fq99CstjmZN3fDwoM+8rK3yeen7U+Pn2MmM4zYz/Tludf4jjzNY="
+    ]
+   },
+   "expect": {
+    "verdict": "UNKNOWN",
+    "verified": []
+   }
+  },
+  {
+   "id": "unsupported-plus-verified",
+   "description": "",
+   "input": {
+    "note": "ilorium.example/strata/organism-test\n8\nOS95jqEleRB1KyHo9JwCiV+/N4+vBeMvBvLSi3uUJtM=\n\n\u2014 witness-c.example/w Q2wZvwAAAABq6eoRmphkL9Jx2lXdC6VWIXbSBV0TuumG59+8Y6icPK9bfhiamGQv0nHaVd0LpVYhdtIFXRO66Ybn37xjqJw8r1t+GA==\n\u2014 witness-a.example/w rSYrOgAAAABq6eoRPwMxgdA78SFfy525X6x/5cK6poVqpW8IfJghpq6rcXwdHJVjl+G58YVtW9jMkep5eBgzHTCmyPWlsf45MlqpAg==\n",
+    "vkeys": [
+     "witness-a.example/w+ad262b3a+BBJAJ1nBjvwyM45/9kFW8oPzx3HWDcxDNG5TGthxQx3H",
+     "witness-c.example/w+436c19bf+AjBZMBMGByqGSM49AgEGCCqGSM49AwEHA0IABIMO7uywy5wEyUs2fIBoXQdYLSqOGY293/B5Fq99CstjmZN3fDwoM+8rK3yeen7U+Pn2MmM4zYz/Tludf4jjzNY="
+    ]
+   },
+   "expect": {
+    "verdict": "PASS",
+    "verified": [
+     "witness-a.example/w"
+    ]
+   }
+  },
+  {
+   "id": "no-final-newline",
+   "description": "",
+   "input": {
+    "note": "ilorium.example/strata/organism-test\n8\nOS95jqEleRB1KyHo9JwCiV+/N4+vBeMvBvLSi3uUJtM=\n\n\u2014 ilorium.example/strata/organism-test pNyVIEaBDurGfikzNm4pHilAH3vUvteUPB35yXLGy0cz1Pd6cZ2Ef96QP/fATvXw7r1xAaeaSZzbJIC4CY6X2IIiUgI=",
+    "vkeys": [
+     "ilorium.example/strata/organism-test+a4dc9520+AVpa7n4gmVgpS9lIYtGO/vxpPTYVHNf97CkPlTSYFlSr"
+    ]
+   },
+   "expect": {
+    "verdict": "FAIL"
+   }
+  },
+  {
+   "id": "no-signature-block",
+   "description": "",
+   "input": {
+    "note": "ilorium.example/strata/organism-test\n8\nOS95jqEleRB1KyHo9JwCiV+/N4+vBeMvBvLSi3uUJtM=\n",
+    "vkeys": [
+     "ilorium.example/strata/organism-test+a4dc9520+AVpa7n4gmVgpS9lIYtGO/vxpPTYVHNf97CkPlTSYFlSr"
+    ]
+   },
+   "expect": {
+    "verdict": "FAIL"
+   }
+  },
+  {
+   "id": "no-signatures",
+   "description": "",
+   "input": {
+    "note": "ilorium.example/strata/organism-test\n8\nOS95jqEleRB1KyHo9JwCiV+/N4+vBeMvBvLSi3uUJtM=\n\n",
+    "vkeys": [
+     "ilorium.example/strata/organism-test+a4dc9520+AVpa7n4gmVgpS9lIYtGO/vxpPTYVHNf97CkPlTSYFlSr"
+    ]
+   },
+   "expect": {
+    "verdict": "FAIL"
+   }
+  },
+  {
+   "id": "signature-line-without-em-dash",
+   "description": "",
+   "input": {
+    "note": "ilorium.example/strata/organism-test\n8\nOS95jqEleRB1KyHo9JwCiV+/N4+vBeMvBvLSi3uUJtM=\n\n- ilorium.example/strata/organism-test pNyVIEaBDurGfikzNm4pHilAH3vUvteUPB35yXLGy0cz1Pd6cZ2Ef96QP/fATvXw7r1xAaeaSZzbJIC4CY6X2IIiUgI=\n",
+    "vkeys": [
+     "ilorium.example/strata/organism-test+a4dc9520+AVpa7n4gmVgpS9lIYtGO/vxpPTYVHNf97CkPlTSYFlSr"
+    ]
+   },
+   "expect": {
+    "verdict": "FAIL"
+   }
+  },
+  {
+   "id": "control-character",
+   "description": "",
+   "input": {
+    "note": "ilorium.example/strata/organism-test\n8\u0007\nOS95jqEleRB1KyHo9JwCiV+/N4+vBeMvBvLSi3uUJtM=\n\n\u2014 ilorium.example/strata/organism-test pNyVIEaBDurGfikzNm4pHilAH3vUvteUPB35yXLGy0cz1Pd6cZ2Ef96QP/fATvXw7r1xAaeaSZzbJIC4CY6X2IIiUgI=\n",
+    "vkeys": [
+     "ilorium.example/strata/organism-test+a4dc9520+AVpa7n4gmVgpS9lIYtGO/vxpPTYVHNf97CkPlTSYFlSr"
+    ]
+   },
+   "expect": {
+    "verdict": "FAIL"
+   }
+  },
+  {
+   "id": "non-canonical-base64",
+   "description": "",
+   "input": {
+    "note": "ilorium.example/strata/organism-test\n8\nOS95jqEleRB1KyHo9JwCiV+/N4+vBeMvBvLSi3uUJtM=\n\n\u2014 ilorium.example/strata/organism-test pNyVIEaBDurGfikzNm4pHilAH3vUvteUPB35yXLGy0cz1Pd6cZ2Ef96QP/fATvXw7r1xAaeaSZzbJIC4CY6X2IIiUg==\n",
+    "vkeys": [
+     "ilorium.example/strata/organism-test+a4dc9520+AVpa7n4gmVgpS9lIYtGO/vxpPTYVHNf97CkPlTSYFlSr"
+    ]
+   },
+   "expect": {
+    "verdict": "FAIL"
+   }
+  }
+ ]
+}

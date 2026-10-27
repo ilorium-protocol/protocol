@@ -1,0 +1,161 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://ilorium.com/schemas/1.0/record.schema.json",
+  "title": "Ilorium record (observation, claim or evaluation)",
+  "description": "A record in an organism's Strata. Evidence Format 1.0 (draft), section 5. Licensed under Apache-2.0.",
+  "type": "object",
+  "required": [
+    "id", "type", "occurred_at", "received_at", "recorded_at",
+    "protocol_release", "probe_version", "rules_version", "policy_version", "spore_version"
+  ],
+  "properties": {
+    "id": { "$ref": "common.schema.json#/$defs/ulid" },
+    "type": { "enum": ["observation", "claim", "evaluation"] },
+    "occurred_at": { "$ref": "common.schema.json#/$defs/time" },
+    "received_at": { "$ref": "common.schema.json#/$defs/time" },
+    "recorded_at": { "$ref": "common.schema.json#/$defs/time" },
+    "beat": { "$ref": "common.schema.json#/$defs/uint" },
+    "protocol_release": { "$ref": "common.schema.json#/$defs/release" },
+    "probe_version": { "$ref": "common.schema.json#/$defs/version" },
+    "rules_version": { "$ref": "common.schema.json#/$defs/version" },
+    "policy_version": { "$ref": "common.schema.json#/$defs/version" },
+    "spore_version": { "$ref": "common.schema.json#/$defs/version" }
+  },
+  "oneOf": [
+    { "$ref": "#/$defs/observation" },
+    { "$ref": "#/$defs/claim" },
+    { "$ref": "#/$defs/evaluation" }
+  ],
+  "unevaluatedProperties": false,
+  "$defs": {
+    "actor": {
+      "type": "object",
+      "required": ["id", "kind"],
+      "additionalProperties": false,
+      "properties": {
+        "id": { "$ref": "common.schema.json#/$defs/name" },
+        "kind": { "enum": ["agent", "human", "unknown", "instrument"] }
+      }
+    },
+    "observation": {
+      "properties": {
+        "type": { "const": "observation" },
+        "source": { "$ref": "common.schema.json#/$defs/label" },
+        "source_event_id": { "$ref": "common.schema.json#/$defs/name" },
+        "kind": { "enum": ["event", "outcome", "gap"] },
+        "actor": { "$ref": "#/$defs/actor" },
+        "action": { "$ref": "common.schema.json#/$defs/name" },
+        "object": { "$ref": "common.schema.json#/$defs/name" },
+        "fields": {
+          "type": "object",
+          "maxProperties": 64,
+          "propertyNames": { "pattern": "^[a-z0-9][a-z0-9_.-]{0,63}$" },
+          "additionalProperties": {
+            "oneOf": [
+              { "type": "string", "maxLength": 1024 },
+              { "$ref": "common.schema.json#/$defs/uint" },
+              { "type": "boolean" }
+            ]
+          }
+        },
+        "content_hash": { "$ref": "common.schema.json#/$defs/sha256" }
+      },
+      "required": ["type", "source", "source_event_id", "kind", "actor", "action", "object"],
+      "if": { "properties": { "kind": { "const": "gap" } }, "required": ["kind"] },
+      "then": {
+        "required": ["fields"],
+        "properties": {
+          "actor": { "properties": { "kind": { "const": "instrument" } } },
+          "fields": {
+            "required": ["from", "to", "reason"],
+            "properties": {
+              "from": { "$ref": "common.schema.json#/$defs/time" },
+              "to": { "$ref": "common.schema.json#/$defs/time" },
+              "reason": {
+                "enum": [
+                  "collector_down", "queue_overflow", "source_retention",
+                  "probe_down", "clock_unreliable", "other"
+                ]
+              },
+              "lost": { "$ref": "common.schema.json#/$defs/uint" }
+            }
+          }
+        }
+      }
+    },
+    "claim": {
+      "properties": {
+        "type": { "const": "claim" },
+        "claimant": {
+          "type": "object",
+          "required": ["id", "kind"],
+          "additionalProperties": false,
+          "properties": {
+            "id": { "$ref": "common.schema.json#/$defs/name" },
+            "kind": { "enum": ["agent", "human"] }
+          }
+        },
+        "about": { "$ref": "common.schema.json#/$defs/name" },
+        "cause": {
+          "type": "object",
+          "required": ["type"],
+          "additionalProperties": false,
+          "properties": {
+            "type": { "enum": ["autonomous", "environment", "directive", "approval"] },
+            "ref": { "$ref": "common.schema.json#/$defs/name" }
+          }
+        },
+        "policy": { "$ref": "common.schema.json#/$defs/name" },
+        "context": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "duration_s": { "$ref": "common.schema.json#/$defs/uint" },
+            "nature": { "enum": ["routine", "exception"] },
+            "outcome": { "type": "string", "maxLength": 1024 },
+            "blocked_process": { "type": "string", "maxLength": 1024 }
+          }
+        }
+      },
+      "required": ["type", "claimant", "about", "cause"]
+    },
+    "evaluation": {
+      "properties": {
+        "type": { "const": "evaluation" },
+        "evaluator": {
+          "type": "object",
+          "required": ["name", "version"],
+          "additionalProperties": false,
+          "properties": {
+            "name": { "$ref": "common.schema.json#/$defs/name" },
+            "version": { "$ref": "common.schema.json#/$defs/version" }
+          }
+        },
+        "inputs": {
+          "type": "array",
+          "minItems": 1,
+          "uniqueItems": true,
+          "items": { "$ref": "common.schema.json#/$defs/ulid" }
+        },
+        "function": {
+          "enum": ["operation", "resources", "resolution", "development", "growth", "unclassified"]
+        },
+        "attribution": { "enum": ["declared", "linked", "corroborated", "unknown", "disputed"] },
+        "crossing": {
+          "enum": [
+            "none", "unknown", "operational", "directive", "approval",
+            "emergency", "governance", "test"
+          ]
+        },
+        "work_unit": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": { "type": "string", "pattern": "^[A-Za-z0-9._:-]{1,128}$" }
+        },
+        "weight": { "enum": ["low", "medium", "high"] },
+        "supersedes": { "$ref": "common.schema.json#/$defs/ulid" }
+      },
+      "required": ["type", "evaluator", "inputs", "function", "attribution", "crossing", "weight"]
+    }
+  }
+}

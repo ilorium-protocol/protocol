@@ -1,0 +1,73 @@
+{
+ "vector_index": "1.0",
+ "protocol_release": "1.0",
+ "note": "TEST KEYS ONLY. See Evidence Format 1.0, section 15.",
+ "files": {
+  "bundle.json": {
+   "operation": "verify_bundle",
+   "cases": 36,
+   "sha256": "a87e206d545375d3ae59bfe058e0aa7a31cfed11f98fb4036b29387574d67b9d"
+  },
+  "canonicalize.json": {
+   "operation": "canonicalize",
+   "cases": 32,
+   "sha256": "11bbd8951170e079234cc60ef56ff878e8085b53c4d99ebfbfd25241db72047c"
+  },
+  "merkle-consistency.json": {
+   "operation": "verify_consistency",
+   "cases": 61,
+   "sha256": "2640b7a0df56bc391502cf8c4ae74870883a4809922a70aca039ffcb3eb09502"
+  },
+  "merkle-inclusion.json": {
+   "operation": "verify_inclusion",
+   "cases": 43,
+   "sha256": "ffd8498e3ecf1399b0846066694196ae24ada39656053f3be9b2daf00a3c3cab"
+  },
+  "merkle-root.json": {
+   "operation": "merkle_root",
+   "cases": 18,
+   "sha256": "2d5d57f8b013e364a4fc9dc439d65a1b50d17ee338819dbe1d190241bb8db650"
+  },
+  "records.json": {
+   "operation": "verify_records",
+   "cases": 40,
+   "sha256": "6fdf30c9736622d5bb1d19dbc2e99022c590934644a17900e51955954e85f77d"
+  },
+  "signed-note.json": {
+   "operation": "verify_signed_note",
+   "cases": 25,
+   "sha256": "54a1d7f93b92849ed0412976f08692364d26eafa5906290ea26e19c5b2a3a112"
+  },
+  "spore.json": {
+   "operation": "verify_spore",
+   "cases": 18,
+   "sha256": "1df76a26f52c28bebd270eaf06571db33193beab0563bd9affdf5ac90489bbec"
+  },
+  "strata-checkpoints.json": {
+   "operation": "verify_strata",
+   "cases": 32,
+   "sha256": "e520bb48ac5eaf2c58e1549aa00a3f9f21ca45288462c40110762af59e77e406"
+  },
+  "strata-gaps.json": {
+   "operation": "verify_strata",
+   "cases": 7,
+   "sha256": "373692d5be72cd3628b7d0af00e5daadd6da1b61be7d10649429529fb6947666"
+  },
+  "strata-log.json": {
+   "operation": "verify_strata",
+   "cases": 10,
+   "sha256": "27053d4591291b4b7e911173f1af267b97da6e04eff28eabab8e5816c8b51606"
+  },
+  "strata-pulses.json": {
+   "operation": "verify_strata",
+   "cases": 20,
+   "sha256": "4e8cf796ecbaf124b705021b2eff1cb24665ffbcfa37842a6f583bef6f2384d3"
+  },
+  "vitalsigns.json": {
+   "operation": "check_vitalsigns",
+   "cases": 42,
+   "sha256": "27fa9f29ec3c7f2f330f31cafa068e12b32b1565021c8f6212e39f15fe3f932c"
+  }
+ },
+ "total_cases": 384
+}

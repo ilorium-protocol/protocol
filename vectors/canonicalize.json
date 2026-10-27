@@ -1,0 +1,360 @@
+{
+ "vector": "1.0",
+ "operation": "canonicalize",
+ "spec": "Evidence Format 1.0 section 4",
+ "description": "Strict parsing and canonical serialization (RFC 8785 profile).",
+ "cases": [
+  {
+   "id": "key-order",
+   "description": "members sorted by name",
+   "input": {
+    "json": "{\"b\":1,\"a\":2}"
+   },
+   "expect": {
+    "verdict": "PASS",
+    "canonical": "{\"a\":2,\"b\":1}"
+   }
+  },
+  {
+   "id": "whitespace-nesting",
+   "description": "whitespace removed, arrays keep order",
+   "input": {
+    "json": "{ \"z\" : [ 3 , 2 , 1 ] , \"y\" : { \"b\" : null , \"a\" : true } }"
+   },
+   "expect": {
+    "verdict": "PASS",
+    "canonical": "{\"y\":{\"a\":true,\"b\":null},\"z\":[3,2,1]}"
+   }
+  },
+  {
+   "id": "escapes",
+   "description": "short escapes, lowercase \\u00xx for other controls, DEL and solidus literal",
+   "input": {
+    "json": "{\"s\":\"\\u0008\\u0009\\u000a\\u000c\\u000d\\\"\\\\\\u001f\\u007f\\/\"}"
+   },
+   "expect": {
+    "verdict": "PASS",
+    "canonical": "{\"s\":\"\\b\\t\\n\\f\\r\\\"\\\\\\u001f\u007f/\"}"
+   }
+  },
+  {
+   "id": "utf16-key-order",
+   "description": "keys sort by UTF-16 code units: U+1F600 (D83D) before U+E000",
+   "input": {
+    "json": "{\"\\ue000\":1,\"\\ud83d\\ude00\":2}"
+   },
+   "expect": {
+    "verdict": "PASS",
+    "canonical": "{\"\ud83d\ude00\":2,\"\ue000\":1}"
+   }
+  },
+  {
+   "id": "non-ascii-literal",
+   "description": "non-ASCII stays as UTF-8",
+   "input": {
+    "json": "{\"\\u00e9\":\"\\u65e5\\u672c\"}"
+   },
+   "expect": {
+    "verdict": "PASS",
+    "canonical": "{\"\u00e9\":\"\u65e5\u672c\"}"
+   }
+  },
+  {
+   "id": "line-separator-literal",
+   "description": "U+2028 is not escaped",
+   "input": {
+    "json": "{\"a\":\"\\u2028\"}"
+   },
+   "expect": {
+    "verdict": "PASS",
+    "canonical": "{\"a\":\"\u2028\"}"
+   }
+  },
+  {
+   "id": "integers",
+   "description": "integers up to 2^53-1",
+   "input": {
+    "json": "{\"a\":0,\"b\":-1,\"c\":9007199254740991,\"d\":-9007199254740991}"
+   },
+   "expect": {
+    "verdict": "PASS",
+    "canonical": "{\"a\":0,\"b\":-1,\"c\":9007199254740991,\"d\":-9007199254740991}"
+   }
+  },
+  {
+   "id": "empty-containers",
+   "description": "",
+   "input": {
+    "json": "{\"a\":{},\"b\":[]}"
+   },
+   "expect": {
+    "verdict": "PASS",
+    "canonical": "{\"a\":{},\"b\":[]}"
+   }
+  },
+  {
+   "id": "sorted-by-unicode-not-locale",
+   "description": "",
+   "input": {
+    "json": "{\"b\":1,\"B\":2,\"a\":3,\"A\":4}"
+   },
+   "expect": {
+    "verdict": "PASS",
+    "canonical": "{\"A\":4,\"B\":2,\"a\":3,\"b\":1}"
+   }
+  },
+  {
+   "id": "float",
+   "description": "no fractional numbers, even when integral",
+   "input": {
+    "json": "{\"a\":1.0}"
+   },
+   "expect": {
+    "verdict": "FAIL",
+    "error": "float_not_allowed"
+   }
+  },
+  {
+   "id": "float-fraction",
+   "description": "",
+   "input": {
+    "json": "{\"a\":0.5}"
+   },
+   "expect": {
+    "verdict": "FAIL",
+    "error": "float_not_allowed"
+   }
+  },
+  {
+   "id": "float-exponent",
+   "description": "",
+   "input": {
+    "json": "{\"a\":1e2}"
+   },
+   "expect": {
+    "verdict": "FAIL",
+    "error": "float_not_allowed"
+   }
+  },
+  {
+   "id": "negative-zero",
+   "description": "",
+   "input": {
+    "json": "{\"a\":-0}"
+   },
+   "expect": {
+    "verdict": "FAIL",
+    "error": "negative_zero"
+   }
+  },
+  {
+   "id": "integer-too-large",
+   "description": "",
+   "input": {
+    "json": "{\"a\":9007199254740992}"
+   },
+   "expect": {
+    "verdict": "FAIL",
+    "error": "integer_out_of_range"
+   }
+  },
+  {
+   "id": "integer-too-small",
+   "description": "",
+   "input": {
+    "json": "{\"a\":-9007199254740992}"
+   },
+   "expect": {
+    "verdict": "FAIL",
+    "error": "integer_out_of_range"
+   }
+  },
+  {
+   "id": "duplicate-key",
+   "description": "",
+   "input": {
+    "json": "{\"a\":1,\"a\":2}"
+   },
+   "expect": {
+    "verdict": "FAIL",
+    "error": "duplicate_key"
+   }
+  },
+  {
+   "id": "duplicate-key-escaped",
+   "description": "same name after unescaping",
+   "input": {
+    "json": "{\"a\":1,\"\\u0061\":2}"
+   },
+   "expect": {
+    "verdict": "FAIL",
+    "error": "duplicate_key"
+   }
+  },
+  {
+   "id": "lone-surrogate-value",
+   "description": "",
+   "input": {
+    "json": "{\"a\":\"\\ud800\"}"
+   },
+   "expect": {
+    "verdict": "FAIL",
+    "error": "lone_surrogate"
+   }
+  },
+  {
+   "id": "lone-surrogate-key",
+   "description": "",
+   "input": {
+    "json": "{\"\\udc00\":1}"
+   },
+   "expect": {
+    "verdict": "FAIL",
+    "error": "lone_surrogate"
+   }
+  },
+  {
+   "id": "not-object-array",
+   "description": "",
+   "input": {
+    "json": "[1]"
+   },
+   "expect": {
+    "verdict": "FAIL",
+    "error": "not_object"
+   }
+  },
+  {
+   "id": "not-object-string",
+   "description": "",
+   "input": {
+    "json": "\"x\""
+   },
+   "expect": {
+    "verdict": "FAIL",
+    "error": "not_object"
+   }
+  },
+  {
+   "id": "not-object-null",
+   "description": "",
+   "input": {
+    "json": "null"
+   },
+   "expect": {
+    "verdict": "FAIL",
+    "error": "not_object"
+   }
+  },
+  {
+   "id": "syntax-missing-value",
+   "description": "",
+   "input": {
+    "json": "{\"a\":}"
+   },
+   "expect": {
+    "verdict": "FAIL",
+    "error": "invalid_json"
+   }
+  },
+  {
+   "id": "trailing-data",
+   "description": "",
+   "input": {
+    "json": "{\"a\":1} x"
+   },
+   "expect": {
+    "verdict": "FAIL",
+    "error": "invalid_json"
+   }
+  },
+  {
+   "id": "empty-input",
+   "description": "",
+   "input": {
+    "json": ""
+   },
+   "expect": {
+    "verdict": "FAIL",
+    "error": "invalid_json"
+   }
+  },
+  {
+   "id": "single-quotes",
+   "description": "",
+   "input": {
+    "json": "{'a':1}"
+   },
+   "expect": {
+    "verdict": "FAIL",
+    "error": "invalid_json"
+   }
+  },
+  {
+   "id": "nan",
+   "description": "",
+   "input": {
+    "json": "{\"a\":NaN}"
+   },
+   "expect": {
+    "verdict": "FAIL",
+    "error": "invalid_json"
+   }
+  },
+  {
+   "id": "infinity",
+   "description": "",
+   "input": {
+    "json": "{\"a\":Infinity}"
+   },
+   "expect": {
+    "verdict": "FAIL",
+    "error": "invalid_json"
+   }
+  },
+  {
+   "id": "leading-zero",
+   "description": "",
+   "input": {
+    "json": "{\"a\":01}"
+   },
+   "expect": {
+    "verdict": "FAIL",
+    "error": "invalid_json"
+   }
+  },
+  {
+   "id": "byte-order-mark",
+   "description": "UTF-8 byte order mark is rejected",
+   "input": {
+    "json_hex": "efbbbf7b7d"
+   },
+   "expect": {
+    "verdict": "FAIL",
+    "error": "invalid_json"
+   }
+  },
+  {
+   "id": "invalid-utf8",
+   "description": "0xff is not valid UTF-8",
+   "input": {
+    "json_hex": "7b2261223a22ff227d"
+   },
+   "expect": {
+    "verdict": "FAIL",
+    "error": "invalid_utf8"
+   }
+  },
+  {
+   "id": "too-deep",
+   "description": "nesting deeper than 64",
+   "input": {
+    "json": "{\"a\":[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]}"
+   },
+   "expect": {
+    "verdict": "FAIL",
+    "error": "too_deep"
+   }
+  }
+ ]
+}

@@ -1,0 +1,24 @@
+# The Ilorium Authors
+
+"The Ilorium Authors" is the copyright holder named in the headers of this repository. It means the
+people and organizations listed here, each for their own contributions. Nobody assigns copyright to
+the project: each contributor keeps theirs and licenses it under the license of the file they change
+(CONTRIBUTING.md). Add yourself in the pull request that makes your first contribution.
+
+## Founder and maintainer (interim governance: the founder alone merges and publishes)
+
+- Seldon (GitHub: `fseldon`). A persistent pseudonym, tied to a verifiable signing key (decision 0003, governance/decisions/0003-founder-pseudonym.md). The protocol was built and deployed by a human and AI agents, and says so.
+
+## Contributors who are humans or organizations
+
+(none yet)
+
+## Contributors that are AI agents
+
+An agent is listed under its own identity, never under a human name. Its contributions are made on
+behalf of the human or organization that signs off its commits (CONTRIBUTING.md), who is the
+responsible party for the rights in that output.
+
+- Claude (Anthropic), working at the request and under the sign-off of the founder.
+- Ilorium build agent (AI) <agents@ilorium.com>: prepared the initial layout of this repository; sign-off by Ilorium Protocol <hello@ilorium.com>.
+- Ilorium Security Agent (AI) <security-agent@ilorium.com>: reviews and reports; sign-off by the founder.

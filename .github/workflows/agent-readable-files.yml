@@ -1,0 +1,30 @@
+# SPDX-License-Identifier: Apache-2.0
+# Copyright The Ilorium Authors
+#
+# What an agent reads is what a human reads (README, Lighthouse). This scan
+# fails on hidden-instruction patterns in agent-readable files: zero-width
+# characters, HTML comments with imperative text, "ignore previous
+# instructions", base64 blobs, hidden spans.
+# Status check context: "agent-readable-files".
+name: agent-readable-files
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+permissions:
+  contents: read
+
+jobs:
+  agent-readable-files:
+    name: agent-readable-files
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+
+      - name: Scan
+        run: python3 -I tools/check_agent_readable.py .

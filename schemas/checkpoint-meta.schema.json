@@ -1,0 +1,19 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://ilorium.com/schemas/1.0/checkpoint-meta.schema.json",
+  "title": "Ilorium checkpoint sidecar",
+  "description": "Signed metadata (beat and translation time) that accompanies a C2SP checkpoint. Evidence Format 1.0 (draft), section 7. Licensed under Apache-2.0.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["checkpoint_meta", "origin", "tree_size", "root", "beat", "translation_time", "trigger", "signature"],
+  "properties": {
+    "checkpoint_meta": { "const": "1.0" },
+    "origin": { "$ref": "common.schema.json#/$defs/origin" },
+    "tree_size": { "$ref": "common.schema.json#/$defs/uint" },
+    "root": { "$ref": "common.schema.json#/$defs/sha256" },
+    "beat": { "$ref": "common.schema.json#/$defs/uint" },
+    "translation_time": { "$ref": "common.schema.json#/$defs/time" },
+    "trigger": { "enum": ["beats", "interval"] },
+    "signature": { "$ref": "common.schema.json#/$defs/signature" }
+  }
+}

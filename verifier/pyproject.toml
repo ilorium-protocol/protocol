@@ -1,0 +1,27 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "ilorium-verifier"
+version = "0.1.0"
+description = "Isolated verifier for Ilorium evidence (Evidence Format 1.0, draft)"
+readme = "README.md"
+requires-python = ">=3.11"
+license = { text = "Apache-2.0" }
+dependencies = [
+  "cryptography>=48",  # ML-DSA-44 needs 48+ built against OpenSSL 3.5+; without it, those signatures give UNKNOWN
+  "jsonschema>=4.21",
+]
+
+[project.optional-dependencies]
+dev = ["pytest", "rfc8785==0.1.4", "dilithium-py==1.5.1"]
+
+[project.scripts]
+ilorium-verifier = "ilorium_verifier.__main__:main"
+
+[tool.setuptools]
+packages = ["ilorium_verifier"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]

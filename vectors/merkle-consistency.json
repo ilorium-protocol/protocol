@@ -1,0 +1,1055 @@
+{
+ "vector": "1.0",
+ "operation": "verify_consistency",
+ "spec": "Evidence Format 1.0 section 7",
+ "description": "Consistency proofs (RFC 9162 section 2.1.4.2).",
+ "cases": [
+  {
+   "id": "valid-1-to-1",
+   "description": "",
+   "input": {
+    "first_size": 1,
+    "second_size": 1,
+    "first_root": "6e340b9cffb37a989ca544e6bb780a2c78901d3fb33738768511a30617afa01d",
+    "second_root": "6e340b9cffb37a989ca544e6bb780a2c78901d3fb33738768511a30617afa01d",
+    "proof": []
+   },
+   "expect": {
+    "verdict": "PASS"
+   }
+  },
+  {
+   "id": "valid-1-to-2",
+   "description": "",
+   "input": {
+    "first_size": 1,
+    "second_size": 2,
+    "first_root": "6e340b9cffb37a989ca544e6bb780a2c78901d3fb33738768511a30617afa01d",
+    "second_root": "fac54203e7cc696cf0dfcb42c92a1d9dbaf70ad9e621f4bd8d98662f00e3c125",
+    "proof": [
+     "96a296d224f285c67bee93c30f8a309157f0daa35dc5b87e410b78630a09cfc7"
+    ]
+   },
+   "expect": {
+    "verdict": "PASS"
+   }
+  },
+  {
+   "id": "valid-2-to-2",
+   "description": "",
+   "input": {
+    "first_size": 2,
+    "second_size": 2,
+    "first_root": "fac54203e7cc696cf0dfcb42c92a1d9dbaf70ad9e621f4bd8d98662f00e3c125",
+    "second_root": "fac54203e7cc696cf0dfcb42c92a1d9dbaf70ad9e621f4bd8d98662f00e3c125",
+    "proof": []
+   },
+   "expect": {
+    "verdict": "PASS"
+   }
+  },
+  {
+   "id": "valid-1-to-3",
+   "description": "",
+   "input": {
+    "first_size": 1,
+    "second_size": 3,
+    "first_root": "6e340b9cffb37a989ca544e6bb780a2c78901d3fb33738768511a30617afa01d",
+    "second_root": "aeb6bcfe274b70a14fb067a5e5578264db0fa9b51af5e0ba159158f329e06e77",
+    "proof": [
+     "96a296d224f285c67bee93c30f8a309157f0daa35dc5b87e410b78630a09cfc7",
+     "0298d122906dcfc10892cb53a73992fc5b9f493ea4c9badb27b791b4127a7fe7"
+    ]
+   },
+   "expect": {
+    "verdict": "PASS"
+   }
+  },
+  {
+   "id": "valid-2-to-3",
+   "description": "",
+   "input": {
+    "first_size": 2,
+    "second_size": 3,
+    "first_root": "fac54203e7cc696cf0dfcb42c92a1d9dbaf70ad9e621f4bd8d98662f00e3c125",
+    "second_root": "aeb6bcfe274b70a14fb067a5e5578264db0fa9b51af5e0ba159158f329e06e77",
+    "proof": [
+     "0298d122906dcfc10892cb53a73992fc5b9f493ea4c9badb27b791b4127a7fe7"
+    ]
+   },
+   "expect": {
+    "verdict": "PASS"
+   }
+  },
+  {
+   "id": "valid-3-to-3",
+   "description": "",
+   "input": {
+    "first_size": 3,
+    "second_size": 3,
+    "first_root": "aeb6bcfe274b70a14fb067a5e5578264db0fa9b51af5e0ba159158f329e06e77",
+    "second_root": "aeb6bcfe274b70a14fb067a5e5578264db0fa9b51af5e0ba159158f329e06e77",
+    "proof": []
+   },
+   "expect": {
+    "verdict": "PASS"
+   }
+  },
+  {
+   "id": "valid-1-to-4",
+   "description": "",
+   "input": {
+    "first_size": 1,
+    "second_size": 4,
+    "first_root": "6e340b9cffb37a989ca544e6bb780a2c78901d3fb33738768511a30617afa01d",
+    "second_root": "d37ee418976dd95753c1c73862b9398fa2a2cf9b4ff0fdfe8b30cd95209614b7",
+    "proof": [
+     "96a296d224f285c67bee93c30f8a309157f0daa35dc5b87e410b78630a09cfc7",
+     "5f083f0a1a33ca076a95279832580db3e0ef4584bdff1f54c8a360f50de3031e"
+    ]
+   },
+   "expect": {
+    "verdict": "PASS"
+   }
+  },
+  {
+   "id": "valid-2-to-4",
+   "description": "",
+   "input": {
+    "first_size": 2,
+    "second_size": 4,
+    "first_root": "fac54203e7cc696cf0dfcb42c92a1d9dbaf70ad9e621f4bd8d98662f00e3c125",
+    "second_root": "d37ee418976dd95753c1c73862b9398fa2a2cf9b4ff0fdfe8b30cd95209614b7",
+    "proof": [
+     "5f083f0a1a33ca076a95279832580db3e0ef4584bdff1f54c8a360f50de3031e"
+    ]
+   },
+   "expect": {
+    "verdict": "PASS"
+   }
+  },
+  {
+   "id": "valid-3-to-4",
+   "description": "",
+   "input": {
+    "first_size": 3,
+    "second_size": 4,
+    "first_root": "aeb6bcfe274b70a14fb067a5e5578264db0fa9b51af5e0ba159158f329e06e77",
+    "second_root": "d37ee418976dd95753c1c73862b9398fa2a2cf9b4ff0fdfe8b30cd95209614b7",
+    "proof": [
+     "0298d122906dcfc10892cb53a73992fc5b9f493ea4c9badb27b791b4127a7fe7",
+     "07506a85fd9dd2f120eb694f86011e5bb4662e5c415a62917033d4a9624487e7",
+     "fac54203e7cc696cf0dfcb42c92a1d9dbaf70ad9e621f4bd8d98662f00e3c125"
+    ]
+   },
+   "expect": {
+    "verdict": "PASS"
+   }
+  },
+  {
+   "id": "valid-4-to-4",
+   "description": "",
+   "input": {
+    "first_size": 4,
+    "second_size": 4,
+    "first_root": "d37ee418976dd95753c1c73862b9398fa2a2cf9b4ff0fdfe8b30cd95209614b7",
+    "second_root": "d37ee418976dd95753c1c73862b9398fa2a2cf9b4ff0fdfe8b30cd95209614b7",
+    "proof": []
+   },
+   "expect": {
+    "verdict": "PASS"
+   }
+  },
+  {
+   "id": "valid-1-to-5",
+   "description": "",
+   "input": {
+    "first_size": 1,
+    "second_size": 5,
+    "first_root": "6e340b9cffb37a989ca544e6bb780a2c78901d3fb33738768511a30617afa01d",
+    "second_root": "4e3bbb1f7b478dcfe71fb631631519a3bca12c9aefca1612bfce4c13a86264d4",
+    "proof": [
+     "96a296d224f285c67bee93c30f8a309157f0daa35dc5b87e410b78630a09cfc7",
+     "5f083f0a1a33ca076a95279832580db3e0ef4584bdff1f54c8a360f50de3031e",
+     "bc1a0643b12e4d2d7c77918f44e0f4f79a838b6cf9ec5b5c283e1f4d88599e6b"
+    ]
+   },
+   "expect": {
+    "verdict": "PASS"
+   }
+  },
+  {
+   "id": "valid-2-to-5",
+   "description": "",
+   "input": {
+    "first_size": 2,
+    "second_size": 5,
+    "first_root": "fac54203e7cc696cf0dfcb42c92a1d9dbaf70ad9e621f4bd8d98662f00e3c125",
+    "second_root": "4e3bbb1f7b478dcfe71fb631631519a3bca12c9aefca1612bfce4c13a86264d4",
+    "proof": [
+     "5f083f0a1a33ca076a95279832580db3e0ef4584bdff1f54c8a360f50de3031e",
+     "bc1a0643b12e4d2d7c77918f44e0f4f79a838b6cf9ec5b5c283e1f4d88599e6b"
+    ]
+   },
+   "expect": {
+    "verdict": "PASS"
+   }
+  },
+  {
+   "id": "valid-3-to-5",
+   "description": "",
+   "input": {
+    "first_size": 3,
+    "second_size": 5,
+    "first_root": "aeb6bcfe274b70a14fb067a5e5578264db0fa9b51af5e0ba159158f329e06e77",
+    "second_root": "4e3bbb1f7b478dcfe71fb631631519a3bca12c9aefca1612bfce4c13a86264d4",
+    "proof": [
+     "0298d122906dcfc10892cb53a73992fc5b9f493ea4c9badb27b791b4127a7fe7",
+     "07506a85fd9dd2f120eb694f86011e5bb4662e5c415a62917033d4a9624487e7",
+     "fac54203e7cc696cf0dfcb42c92a1d9dbaf70ad9e621f4bd8d98662f00e3c125",
+     "bc1a0643b12e4d2d7c77918f44e0f4f79a838b6cf9ec5b5c283e1f4d88599e6b"
+    ]
+   },
+   "expect": {
+    "verdict": "PASS"
+   }
+  },
+  {
+   "id": "valid-4-to-5",
+   "description": "",
+   "input": {
+    "first_size": 4,
+    "second_size": 5,
+    "first_root": "d37ee418976dd95753c1c73862b9398fa2a2cf9b4ff0fdfe8b30cd95209614b7",
+    "second_root": "4e3bbb1f7b478dcfe71fb631631519a3bca12c9aefca1612bfce4c13a86264d4",
+    "proof": [
+     "bc1a0643b12e4d2d7c77918f44e0f4f79a838b6cf9ec5b5c283e1f4d88599e6b"
+    ]
+   },
+   "expect": {
+    "verdict": "PASS"
+   }
+  },
+  {
+   "id": "valid-5-to-5",
+   "description": "",
+   "input": {
+    "first_size": 5,
+    "second_size": 5,
+    "first_root": "4e3bbb1f7b478dcfe71fb631631519a3bca12c9aefca1612bfce4c13a86264d4",
+    "second_root": "4e3bbb1f7b478dcfe71fb631631519a3bca12c9aefca1612bfce4c13a86264d4",
+    "proof": []
+   },
+   "expect": {
+    "verdict": "PASS"
+   }
+  },
+  {
+   "id": "valid-1-to-6",
+   "description": "",
+   "input": {
+    "first_size": 1,
+    "second_size": 6,
+    "first_root": "6e340b9cffb37a989ca544e6bb780a2c78901d3fb33738768511a30617afa01d",
+    "second_root": "76e67dadbcdf1e10e1b74ddc608abd2f98dfb16fbce75277b5232a127f2087ef",
+    "proof": [
+     "96a296d224f285c67bee93c30f8a309157f0daa35dc5b87e410b78630a09cfc7",
+     "5f083f0a1a33ca076a95279832580db3e0ef4584bdff1f54c8a360f50de3031e",
+     "0ebc5d3437fbe2db158b9f126a1d118e308181031d0a949f8dededebc558ef6a"
+    ]
+   },
+   "expect": {
+    "verdict": "PASS"
+   }
+  },
+  {
+   "id": "valid-2-to-6",
+   "description": "",
+   "input": {
+    "first_size": 2,
+    "second_size": 6,
+    "first_root": "fac54203e7cc696cf0dfcb42c92a1d9dbaf70ad9e621f4bd8d98662f00e3c125",
+    "second_root": "76e67dadbcdf1e10e1b74ddc608abd2f98dfb16fbce75277b5232a127f2087ef",
+    "proof": [
+     "5f083f0a1a33ca076a95279832580db3e0ef4584bdff1f54c8a360f50de3031e",
+     "0ebc5d3437fbe2db158b9f126a1d118e308181031d0a949f8dededebc558ef6a"
+    ]
+   },
+   "expect": {
+    "verdict": "PASS"
+   }
+  },
+  {
+   "id": "valid-3-to-6",
+   "description": "",
+   "input": {
+    "first_size": 3,
+    "second_size": 6,
+    "first_root": "aeb6bcfe274b70a14fb067a5e5578264db0fa9b51af5e0ba159158f329e06e77",
+    "second_root": "76e67dadbcdf1e10e1b74ddc608abd2f98dfb16fbce75277b5232a127f2087ef",
+    "proof": [
+     "0298d122906dcfc10892cb53a73992fc5b9f493ea4c9badb27b791b4127a7fe7",
+     "07506a85fd9dd2f120eb694f86011e5bb4662e5c415a62917033d4a9624487e7",
+     "fac54203e7cc696cf0dfcb42c92a1d9dbaf70ad9e621f4bd8d98662f00e3c125",
+     "0ebc5d3437fbe2db158b9f126a1d118e308181031d0a949f8dededebc558ef6a"
+    ]
+   },
+   "expect": {
+    "verdict": "PASS"
+   }
+  },
+  {
+   "id": "valid-4-to-6",
+   "description": "",
+   "input": {
+    "first_size": 4,
+    "second_size": 6,
+    "first_root": "d37ee418976dd95753c1c73862b9398fa2a2cf9b4ff0fdfe8b30cd95209614b7",
+    "second_root": "76e67dadbcdf1e10e1b74ddc608abd2f98dfb16fbce75277b5232a127f2087ef",
+    "proof": [
+     "0ebc5d3437fbe2db158b9f126a1d118e308181031d0a949f8dededebc558ef6a"
+    ]
+   },
+   "expect": {
+    "verdict": "PASS"
+   }
+  },
+  {
+   "id": "valid-5-to-6",
+   "description": "",
+   "input": {
+    "first_size": 5,
+    "second_size": 6,
+    "first_root": "4e3bbb1f7b478dcfe71fb631631519a3bca12c9aefca1612bfce4c13a86264d4",
+    "second_root": "76e67dadbcdf1e10e1b74ddc608abd2f98dfb16fbce75277b5232a127f2087ef",
+    "proof": [
+     "bc1a0643b12e4d2d7c77918f44e0f4f79a838b6cf9ec5b5c283e1f4d88599e6b",
+     "4271a26be0d8a84f0bd54c8c302e7cb3a3b5d1fa6780a40bcce2873477dab658",
+     "d37ee418976dd95753c1c73862b9398fa2a2cf9b4ff0fdfe8b30cd95209614b7"
+    ]
+   },
+   "expect": {
+    "verdict": "PASS"
+   }
+  },
+  {
+   "id": "valid-6-to-6",
+   "description": "",
+   "input": {
+    "first_size": 6,
+    "second_size": 6,
+    "first_root": "76e67dadbcdf1e10e1b74ddc608abd2f98dfb16fbce75277b5232a127f2087ef",
+    "second_root": "76e67dadbcdf1e10e1b74ddc608abd2f98dfb16fbce75277b5232a127f2087ef",
+    "proof": []
+   },
+   "expect": {
+    "verdict": "PASS"
+   }
+  },
+  {
+   "id": "valid-1-to-7",
+   "description": "",
+   "input": {
+    "first_size": 1,
+    "second_size": 7,
+    "first_root": "6e340b9cffb37a989ca544e6bb780a2c78901d3fb33738768511a30617afa01d",
+    "second_root": "ddb89be403809e325750d3d263cd78929c2942b7942a34b77e122c9594a74c8c",
+    "proof": [
+     "96a296d224f285c67bee93c30f8a309157f0daa35dc5b87e410b78630a09cfc7",
+     "5f083f0a1a33ca076a95279832580db3e0ef4584bdff1f54c8a360f50de3031e",
+     "837dbb152e9b079010717e84e865da4ebc0fa198a806d59d31bf15accef22d0e"
+    ]
+   },
+   "expect": {
+    "verdict": "PASS"
+   }
+  },
+  {
+   "id": "valid-2-to-7",
+   "description": "",
+   "input": {
+    "first_size": 2,
+    "second_size": 7,
+    "first_root": "fac54203e7cc696cf0dfcb42c92a1d9dbaf70ad9e621f4bd8d98662f00e3c125",
+    "second_root": "ddb89be403809e325750d3d263cd78929c2942b7942a34b77e122c9594a74c8c",
+    "proof": [
+     "5f083f0a1a33ca076a95279832580db3e0ef4584bdff1f54c8a360f50de3031e",
+     "837dbb152e9b079010717e84e865da4ebc0fa198a806d59d31bf15accef22d0e"
+    ]
+   },
+   "expect": {
+    "verdict": "PASS"
+   }
+  },
+  {
+   "id": "valid-3-to-7",
+   "description": "",
+   "input": {
+    "first_size": 3,
+    "second_size": 7,
+    "first_root": "aeb6bcfe274b70a14fb067a5e5578264db0fa9b51af5e0ba159158f329e06e77",
+    "second_root": "ddb89be403809e325750d3d263cd78929c2942b7942a34b77e122c9594a74c8c",
+    "proof": [
+     "0298d122906dcfc10892cb53a73992fc5b9f493ea4c9badb27b791b4127a7fe7",
+     "07506a85fd9dd2f120eb694f86011e5bb4662e5c415a62917033d4a9624487e7",
+     "fac54203e7cc696cf0dfcb42c92a1d9dbaf70ad9e621f4bd8d98662f00e3c125",
+     "837dbb152e9b079010717e84e865da4ebc0fa198a806d59d31bf15accef22d0e"
+    ]
+   },
+   "expect": {
+    "verdict": "PASS"
+   }
+  },
+  {
+   "id": "valid-4-to-7",
+   "description": "",
+   "input": {
+    "first_size": 4,
+    "second_size": 7,
+    "first_root": "d37ee418976dd95753c1c73862b9398fa2a2cf9b4ff0fdfe8b30cd95209614b7",
+    "second_root": "ddb89be403809e325750d3d263cd78929c2942b7942a34b77e122c9594a74c8c",
+    "proof": [
+     "837dbb152e9b079010717e84e865da4ebc0fa198a806d59d31bf15accef22d0e"
+    ]
+   },
+   "expect": {
+    "verdict": "PASS"
+   }
+  },
+  {
+   "id": "valid-5-to-7",
+   "description": "",
+   "input": {
+    "first_size": 5,
+    "second_size": 7,
+    "first_root": "4e3bbb1f7b478dcfe71fb631631519a3bca12c9aefca1612bfce4c13a86264d4",
+    "second_root": "ddb89be403809e325750d3d263cd78929c2942b7942a34b77e122c9594a74c8c",
+    "proof": [
+     "bc1a0643b12e4d2d7c77918f44e0f4f79a838b6cf9ec5b5c283e1f4d88599e6b",
+     "4271a26be0d8a84f0bd54c8c302e7cb3a3b5d1fa6780a40bcce2873477dab658",
+     "b08693ec2e721597130641e8211e7eedccb4c26413963eee6c1e2ed16ffb1a5f",
+     "d37ee418976dd95753c1c73862b9398fa2a2cf9b4ff0fdfe8b30cd95209614b7"
+    ]
+   },
+   "expect": {
+    "verdict": "PASS"
+   }
+  },
+  {
+   "id": "valid-6-to-7",
+   "description": "",
+   "input": {
+    "first_size": 6,
+    "second_size": 7,
+    "first_root": "76e67dadbcdf1e10e1b74ddc608abd2f98dfb16fbce75277b5232a127f2087ef",
+    "second_root": "ddb89be403809e325750d3d263cd78929c2942b7942a34b77e122c9594a74c8c",
+    "proof": [
+     "0ebc5d3437fbe2db158b9f126a1d118e308181031d0a949f8dededebc558ef6a",
+     "b08693ec2e721597130641e8211e7eedccb4c26413963eee6c1e2ed16ffb1a5f",
+     "d37ee418976dd95753c1c73862b9398fa2a2cf9b4ff0fdfe8b30cd95209614b7"
+    ]
+   },
+   "expect": {
+    "verdict": "PASS"
+   }
+  },
+  {
+   "id": "valid-7-to-7",
+   "description": "",
+   "input": {
+    "first_size": 7,
+    "second_size": 7,
+    "first_root": "ddb89be403809e325750d3d263cd78929c2942b7942a34b77e122c9594a74c8c",
+    "second_root": "ddb89be403809e325750d3d263cd78929c2942b7942a34b77e122c9594a74c8c",
+    "proof": []
+   },
+   "expect": {
+    "verdict": "PASS"
+   }
+  },
+  {
+   "id": "valid-1-to-8",
+   "description": "",
+   "input": {
+    "first_size": 1,
+    "second_size": 8,
+    "first_root": "6e340b9cffb37a989ca544e6bb780a2c78901d3fb33738768511a30617afa01d",
+    "second_root": "5dc9da79a70659a9ad559cb701ded9a2ab9d823aad2f4960cfe370eff4604328",
+    "proof": [
+     "96a296d224f285c67bee93c30f8a309157f0daa35dc5b87e410b78630a09cfc7",
+     "5f083f0a1a33ca076a95279832580db3e0ef4584bdff1f54c8a360f50de3031e",
+     "6b47aaf29ee3c2af9af889bc1fb9254dabd31177f16232dd6aab035ca39bf6e4"
+    ]
+   },
+   "expect": {
+    "verdict": "PASS"
+   }
+  },
+  {
+   "id": "valid-2-to-8",
+   "description": "",
+   "input": {
+    "first_size": 2,
+    "second_size": 8,
+    "first_root": "fac54203e7cc696cf0dfcb42c92a1d9dbaf70ad9e621f4bd8d98662f00e3c125",
+    "second_root": "5dc9da79a70659a9ad559cb701ded9a2ab9d823aad2f4960cfe370eff4604328",
+    "proof": [
+     "5f083f0a1a33ca076a95279832580db3e0ef4584bdff1f54c8a360f50de3031e",
+     "6b47aaf29ee3c2af9af889bc1fb9254dabd31177f16232dd6aab035ca39bf6e4"
+    ]
+   },
+   "expect": {
+    "verdict": "PASS"
+   }
+  },
+  {
+   "id": "valid-3-to-8",
+   "description": "",
+   "input": {
+    "first_size": 3,
+    "second_size": 8,
+    "first_root": "aeb6bcfe274b70a14fb067a5e5578264db0fa9b51af5e0ba159158f329e06e77",
+    "second_root": "5dc9da79a70659a9ad559cb701ded9a2ab9d823aad2f4960cfe370eff4604328",
+    "proof": [
+     "0298d122906dcfc10892cb53a73992fc5b9f493ea4c9badb27b791b4127a7fe7",
+     "07506a85fd9dd2f120eb694f86011e5bb4662e5c415a62917033d4a9624487e7",
+     "fac54203e7cc696cf0dfcb42c92a1d9dbaf70ad9e621f4bd8d98662f00e3c125",
+     "6b47aaf29ee3c2af9af889bc1fb9254dabd31177f16232dd6aab035ca39bf6e4"
+    ]
+   },
+   "expect": {
+    "verdict": "PASS"
+   }
+  },
+  {
+   "id": "valid-4-to-8",
+   "description": "",
+   "input": {
+    "first_size": 4,
+    "second_size": 8,
+    "first_root": "d37ee418976dd95753c1c73862b9398fa2a2cf9b4ff0fdfe8b30cd95209614b7",
+    "second_root": "5dc9da79a70659a9ad559cb701ded9a2ab9d823aad2f4960cfe370eff4604328",
+    "proof": [
+     "6b47aaf29ee3c2af9af889bc1fb9254dabd31177f16232dd6aab035ca39bf6e4"
+    ]
+   },
+   "expect": {
+    "verdict": "PASS"
+   }
+  },
+  {
+   "id": "valid-5-to-8",
+   "description": "",
+   "input": {
+    "first_size": 5,
+    "second_size": 8,
+    "first_root": "4e3bbb1f7b478dcfe71fb631631519a3bca12c9aefca1612bfce4c13a86264d4",
+    "second_root": "5dc9da79a70659a9ad559cb701ded9a2ab9d823aad2f4960cfe370eff4604328",
+    "proof": [
+     "bc1a0643b12e4d2d7c77918f44e0f4f79a838b6cf9ec5b5c283e1f4d88599e6b",
+     "4271a26be0d8a84f0bd54c8c302e7cb3a3b5d1fa6780a40bcce2873477dab658",
+     "ca854ea128ed050b41b35ffc1b87b8eb2bde461e9e3b5596ece6b9d5975a0ae0",
+     "d37ee418976dd95753c1c73862b9398fa2a2cf9b4ff0fdfe8b30cd95209614b7"
+    ]
+   },
+   "expect": {
+    "verdict": "PASS"
+   }
+  },
+  {
+   "id": "valid-6-to-8",
+   "description": "",
+   "input": {
+    "first_size": 6,
+    "second_size": 8,
+    "first_root": "76e67dadbcdf1e10e1b74ddc608abd2f98dfb16fbce75277b5232a127f2087ef",
+    "second_root": "5dc9da79a70659a9ad559cb701ded9a2ab9d823aad2f4960cfe370eff4604328",
+    "proof": [
+     "0ebc5d3437fbe2db158b9f126a1d118e308181031d0a949f8dededebc558ef6a",
+     "ca854ea128ed050b41b35ffc1b87b8eb2bde461e9e3b5596ece6b9d5975a0ae0",
+     "d37ee418976dd95753c1c73862b9398fa2a2cf9b4ff0fdfe8b30cd95209614b7"
+    ]
+   },
+   "expect": {
+    "verdict": "PASS"
+   }
+  },
+  {
+   "id": "valid-7-to-8",
+   "description": "",
+   "input": {
+    "first_size": 7,
+    "second_size": 8,
+    "first_root": "ddb89be403809e325750d3d263cd78929c2942b7942a34b77e122c9594a74c8c",
+    "second_root": "5dc9da79a70659a9ad559cb701ded9a2ab9d823aad2f4960cfe370eff4604328",
+    "proof": [
+     "b08693ec2e721597130641e8211e7eedccb4c26413963eee6c1e2ed16ffb1a5f",
+     "46f6ffadd3d06a09ff3c5860d2755c8b9819db7df44251788c7d8e3180de8eb1",
+     "0ebc5d3437fbe2db158b9f126a1d118e308181031d0a949f8dededebc558ef6a",
+     "d37ee418976dd95753c1c73862b9398fa2a2cf9b4ff0fdfe8b30cd95209614b7"
+    ]
+   },
+   "expect": {
+    "verdict": "PASS"
+   }
+  },
+  {
+   "id": "valid-8-to-8",
+   "description": "",
+   "input": {
+    "first_size": 8,
+    "second_size": 8,
+    "first_root": "5dc9da79a70659a9ad559cb701ded9a2ab9d823aad2f4960cfe370eff4604328",
+    "second_root": "5dc9da79a70659a9ad559cb701ded9a2ab9d823aad2f4960cfe370eff4604328",
+    "proof": []
+   },
+   "expect": {
+    "verdict": "PASS"
+   }
+  },
+  {
+   "id": "valid-1-to-9",
+   "description": "",
+   "input": {
+    "first_size": 1,
+    "second_size": 9,
+    "first_root": "6e340b9cffb37a989ca544e6bb780a2c78901d3fb33738768511a30617afa01d",
+    "second_root": "6a61c6840b374ca809d3eacd8a7116b6cea85c00c431ae9a5731040826e628c3",
+    "proof": [
+     "96a296d224f285c67bee93c30f8a309157f0daa35dc5b87e410b78630a09cfc7",
+     "5f083f0a1a33ca076a95279832580db3e0ef4584bdff1f54c8a360f50de3031e",
+     "6b47aaf29ee3c2af9af889bc1fb9254dabd31177f16232dd6aab035ca39bf6e4",
+     "90478aae02a6f91dd6950811e8e6561b533a8a2c1de189a382d4fbd2e6ee3ef1"
+    ]
+   },
+   "expect": {
+    "verdict": "PASS"
+   }
+  },
+  {
+   "id": "valid-2-to-9",
+   "description": "",
+   "input": {
+    "first_size": 2,
+    "second_size": 9,
+    "first_root": "fac54203e7cc696cf0dfcb42c92a1d9dbaf70ad9e621f4bd8d98662f00e3c125",
+    "second_root": "6a61c6840b374ca809d3eacd8a7116b6cea85c00c431ae9a5731040826e628c3",
+    "proof": [
+     "5f083f0a1a33ca076a95279832580db3e0ef4584bdff1f54c8a360f50de3031e",
+     "6b47aaf29ee3c2af9af889bc1fb9254dabd31177f16232dd6aab035ca39bf6e4",
+     "90478aae02a6f91dd6950811e8e6561b533a8a2c1de189a382d4fbd2e6ee3ef1"
+    ]
+   },
+   "expect": {
+    "verdict": "PASS"
+   }
+  },
+  {
+   "id": "valid-3-to-9",
+   "description": "",
+   "input": {
+    "first_size": 3,
+    "second_size": 9,
+    "first_root": "aeb6bcfe274b70a14fb067a5e5578264db0fa9b51af5e0ba159158f329e06e77",
+    "second_root": "6a61c6840b374ca809d3eacd8a7116b6cea85c00c431ae9a5731040826e628c3",
+    "proof": [
+     "0298d122906dcfc10892cb53a73992fc5b9f493ea4c9badb27b791b4127a7fe7",
+     "07506a85fd9dd2f120eb694f86011e5bb4662e5c415a62917033d4a9624487e7",
+     "fac54203e7cc696cf0dfcb42c92a1d9dbaf70ad9e621f4bd8d98662f00e3c125",
+     "6b47aaf29ee3c2af9af889bc1fb9254dabd31177f16232dd6aab035ca39bf6e4",
+     "90478aae02a6f91dd6950811e8e6561b533a8a2c1de189a382d4fbd2e6ee3ef1"
+    ]
+   },
+   "expect": {
+    "verdict": "PASS"
+   }
+  },
+  {
+   "id": "valid-4-to-9",
+   "description": "",
+   "input": {
+    "first_size": 4,
+    "second_size": 9,
+    "first_root": "d37ee418976dd95753c1c73862b9398fa2a2cf9b4ff0fdfe8b30cd95209614b7",
+    "second_root": "6a61c6840b374ca809d3eacd8a7116b6cea85c00c431ae9a5731040826e628c3",
+    "proof": [
+     "6b47aaf29ee3c2af9af889bc1fb9254dabd31177f16232dd6aab035ca39bf6e4",
+     "90478aae02a6f91dd6950811e8e6561b533a8a2c1de189a382d4fbd2e6ee3ef1"
+    ]
+   },
+   "expect": {
+    "verdict": "PASS"
+   }
+  },
+  {
+   "id": "valid-5-to-9",
+   "description": "",
+   "input": {
+    "first_size": 5,
+    "second_size": 9,
+    "first_root": "4e3bbb1f7b478dcfe71fb631631519a3bca12c9aefca1612bfce4c13a86264d4",
+    "second_root": "6a61c6840b374ca809d3eacd8a7116b6cea85c00c431ae9a5731040826e628c3",
+    "proof": [
+     "bc1a0643b12e4d2d7c77918f44e0f4f79a838b6cf9ec5b5c283e1f4d88599e6b",
+     "4271a26be0d8a84f0bd54c8c302e7cb3a3b5d1fa6780a40bcce2873477dab658",
+     "ca854ea128ed050b41b35ffc1b87b8eb2bde461e9e3b5596ece6b9d5975a0ae0",
+     "d37ee418976dd95753c1c73862b9398fa2a2cf9b4ff0fdfe8b30cd95209614b7",
+     "90478aae02a6f91dd6950811e8e6561b533a8a2c1de189a382d4fbd2e6ee3ef1"
+    ]
+   },
+   "expect": {
+    "verdict": "PASS"
+   }
+  },
+  {
+   "id": "valid-6-to-9",
+   "description": "",
+   "input": {
+    "first_size": 6,
+    "second_size": 9,
+    "first_root": "76e67dadbcdf1e10e1b74ddc608abd2f98dfb16fbce75277b5232a127f2087ef",
+    "second_root": "6a61c6840b374ca809d3eacd8a7116b6cea85c00c431ae9a5731040826e628c3",
+    "proof": [
+     "0ebc5d3437fbe2db158b9f126a1d118e308181031d0a949f8dededebc558ef6a",
+     "ca854ea128ed050b41b35ffc1b87b8eb2bde461e9e3b5596ece6b9d5975a0ae0",
+     "d37ee418976dd95753c1c73862b9398fa2a2cf9b4ff0fdfe8b30cd95209614b7",
+     "90478aae02a6f91dd6950811e8e6561b533a8a2c1de189a382d4fbd2e6ee3ef1"
+    ]
+   },
+   "expect": {
+    "verdict": "PASS"
+   }
+  },
+  {
+   "id": "valid-7-to-9",
+   "description": "",
+   "input": {
+    "first_size": 7,
+    "second_size": 9,
+    "first_root": "ddb89be403809e325750d3d263cd78929c2942b7942a34b77e122c9594a74c8c",
+    "second_root": "6a61c6840b374ca809d3eacd8a7116b6cea85c00c431ae9a5731040826e628c3",
+    "proof": [
+     "b08693ec2e721597130641e8211e7eedccb4c26413963eee6c1e2ed16ffb1a5f",
+     "46f6ffadd3d06a09ff3c5860d2755c8b9819db7df44251788c7d8e3180de8eb1",
+     "0ebc5d3437fbe2db158b9f126a1d118e308181031d0a949f8dededebc558ef6a",
+     "d37ee418976dd95753c1c73862b9398fa2a2cf9b4ff0fdfe8b30cd95209614b7",
+     "90478aae02a6f91dd6950811e8e6561b533a8a2c1de189a382d4fbd2e6ee3ef1"
+    ]
+   },
+   "expect": {
+    "verdict": "PASS"
+   }
+  },
+  {
+   "id": "valid-8-to-9",
+   "description": "",
+   "input": {
+    "first_size": 8,
+    "second_size": 9,
+    "first_root": "5dc9da79a70659a9ad559cb701ded9a2ab9d823aad2f4960cfe370eff4604328",
+    "second_root": "6a61c6840b374ca809d3eacd8a7116b6cea85c00c431ae9a5731040826e628c3",
+    "proof": [
+     "90478aae02a6f91dd6950811e8e6561b533a8a2c1de189a382d4fbd2e6ee3ef1"
+    ]
+   },
+   "expect": {
+    "verdict": "PASS"
+   }
+  },
+  {
+   "id": "valid-9-to-9",
+   "description": "",
+   "input": {
+    "first_size": 9,
+    "second_size": 9,
+    "first_root": "6a61c6840b374ca809d3eacd8a7116b6cea85c00c431ae9a5731040826e628c3",
+    "second_root": "6a61c6840b374ca809d3eacd8a7116b6cea85c00c431ae9a5731040826e628c3",
+    "proof": []
+   },
+   "expect": {
+    "verdict": "PASS"
+   }
+  },
+  {
+   "id": "valid-1-to-33",
+   "description": "",
+   "input": {
+    "first_size": 1,
+    "second_size": 33,
+    "first_root": "6e340b9cffb37a989ca544e6bb780a2c78901d3fb33738768511a30617afa01d",
+    "second_root": "54cd54e27486fcbe05808e03029e8272cbc33ebd2950b55bfb0612edd4df2dcb",
+    "proof": [
+     "96a296d224f285c67bee93c30f8a309157f0daa35dc5b87e410b78630a09cfc7",
+     "5f083f0a1a33ca076a95279832580db3e0ef4584bdff1f54c8a360f50de3031e",
+     "6b47aaf29ee3c2af9af889bc1fb9254dabd31177f16232dd6aab035ca39bf6e4",
+     "1e00a81de8dc5aab92e244812269634a1c3e02a9709940fd81653a26f76c62ec",
+     "0200891f1f97f29a98128ec5767a9eecacc894fcb2027caca84f81119d85f0cb",
+     "240aaaefa174d36f96cf1c1095a75e2fd068ce2062b9fc70a595481f954557a4"
+    ]
+   },
+   "expect": {
+    "verdict": "PASS"
+   }
+  },
+  {
+   "id": "valid-16-to-33",
+   "description": "",
+   "input": {
+    "first_size": 16,
+    "second_size": 33,
+    "first_root": "fd0cf0b3f92a89b83db195f54a622afc72721058cbc065053acf2c78b19e434c",
+    "second_root": "54cd54e27486fcbe05808e03029e8272cbc33ebd2950b55bfb0612edd4df2dcb",
+    "proof": [
+     "0200891f1f97f29a98128ec5767a9eecacc894fcb2027caca84f81119d85f0cb",
+     "240aaaefa174d36f96cf1c1095a75e2fd068ce2062b9fc70a595481f954557a4"
+    ]
+   },
+   "expect": {
+    "verdict": "PASS"
+   }
+  },
+  {
+   "id": "valid-17-to-33",
+   "description": "",
+   "input": {
+    "first_size": 17,
+    "second_size": 33,
+    "first_root": "a3d81a95980b6ec0ecababd994612add4e90da19ebafa892691b6e8c2d0dea69",
+    "second_root": "54cd54e27486fcbe05808e03029e8272cbc33ebd2950b55bfb0612edd4df2dcb",
+    "proof": [
+     "1f32ee3154cd8af1d019b0ac5304cd0a4444db357bf8b8a1aa0ae93989f639ac",
+     "594a96b08f9024720b4e4578ed0891867ecf7cf7c5c1d448545a4209f073828d",
+     "cb8a10c466f0102bf28e94a05fa41b614c4ebc9e8d7d3ad2409bdf7bf9f8b10e",
+     "2dd1810bb6a19f2963da89e855f9c8b9829b73634f4a8838752b96c2e040579e",
+     "1438622461e509724a0b24dd3427e84cd342f2ea1d2cf4b1d5767e233e960156",
+     "fd0cf0b3f92a89b83db195f54a622afc72721058cbc065053acf2c78b19e434c",
+     "240aaaefa174d36f96cf1c1095a75e2fd068ce2062b9fc70a595481f954557a4"
+    ]
+   },
+   "expect": {
+    "verdict": "PASS"
+   }
+  },
+  {
+   "id": "valid-31-to-33",
+   "description": "",
+   "input": {
+    "first_size": 31,
+    "second_size": 33,
+    "first_root": "52ea26d3a708e63b267daf529960101dd67113d84e5a61c8d35ef599a1a9aea7",
+    "second_root": "54cd54e27486fcbe05808e03029e8272cbc33ebd2950b55bfb0612edd4df2dcb",
+    "proof": [
+     "73874f8afbd537f4877e3aa342d996273e028e62363e71ad5206a81787445c53",
+     "65f56a02254cc2cd9622cf5cccd9629bd56c9ec410cd3844064a09b57904d765",
+     "c3bfebfefe419dfcedfa5cfd1f6fd9c6064cf1888b7324a2868a97c80a4bd6dd",
+     "2ef30195672c617e8bd5becdbe0c9d71179837b1f44c326fb26e451927d78ebe",
+     "5664e56f1ffb0e01d3736928f8cf79634fcbb1bf4626ca425ae6a622637ff1cb",
+     "fd0cf0b3f92a89b83db195f54a622afc72721058cbc065053acf2c78b19e434c",
+     "240aaaefa174d36f96cf1c1095a75e2fd068ce2062b9fc70a595481f954557a4"
+    ]
+   },
+   "expect": {
+    "verdict": "PASS"
+   }
+  },
+  {
+   "id": "valid-32-to-33",
+   "description": "",
+   "input": {
+    "first_size": 32,
+    "second_size": 33,
+    "first_root": "5f68526fae70afc3e11b15308acb50ef3f1af86dfda20b92275985e9d3e871c9",
+    "second_root": "54cd54e27486fcbe05808e03029e8272cbc33ebd2950b55bfb0612edd4df2dcb",
+    "proof": [
+     "240aaaefa174d36f96cf1c1095a75e2fd068ce2062b9fc70a595481f954557a4"
+    ]
+   },
+   "expect": {
+    "verdict": "PASS"
+   }
+  },
+  {
+   "id": "valid-from-empty",
+   "description": "the empty tree is a prefix of every tree",
+   "input": {
+    "first_size": 0,
+    "second_size": 5,
+    "first_root": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "second_root": "4e3bbb1f7b478dcfe71fb631631519a3bca12c9aefca1612bfce4c13a86264d4",
+    "proof": []
+   },
+   "expect": {
+    "verdict": "PASS"
+   }
+  },
+  {
+   "id": "wrong-first-root",
+   "description": "",
+   "input": {
+    "first_size": 3,
+    "second_size": 8,
+    "first_root": "d37ee418976dd95753c1c73862b9398fa2a2cf9b4ff0fdfe8b30cd95209614b7",
+    "second_root": "5dc9da79a70659a9ad559cb701ded9a2ab9d823aad2f4960cfe370eff4604328",
+    "proof": [
+     "0298d122906dcfc10892cb53a73992fc5b9f493ea4c9badb27b791b4127a7fe7",
+     "07506a85fd9dd2f120eb694f86011e5bb4662e5c415a62917033d4a9624487e7",
+     "fac54203e7cc696cf0dfcb42c92a1d9dbaf70ad9e621f4bd8d98662f00e3c125",
+     "6b47aaf29ee3c2af9af889bc1fb9254dabd31177f16232dd6aab035ca39bf6e4"
+    ]
+   },
+   "expect": {
+    "verdict": "FAIL"
+   }
+  },
+  {
+   "id": "wrong-second-root",
+   "description": "",
+   "input": {
+    "first_size": 3,
+    "second_size": 8,
+    "first_root": "aeb6bcfe274b70a14fb067a5e5578264db0fa9b51af5e0ba159158f329e06e77",
+    "second_root": "ddb89be403809e325750d3d263cd78929c2942b7942a34b77e122c9594a74c8c",
+    "proof": [
+     "0298d122906dcfc10892cb53a73992fc5b9f493ea4c9badb27b791b4127a7fe7",
+     "07506a85fd9dd2f120eb694f86011e5bb4662e5c415a62917033d4a9624487e7",
+     "fac54203e7cc696cf0dfcb42c92a1d9dbaf70ad9e621f4bd8d98662f00e3c125",
+     "6b47aaf29ee3c2af9af889bc1fb9254dabd31177f16232dd6aab035ca39bf6e4"
+    ]
+   },
+   "expect": {
+    "verdict": "FAIL"
+   }
+  },
+  {
+   "id": "proof-truncated",
+   "description": "",
+   "input": {
+    "first_size": 3,
+    "second_size": 8,
+    "first_root": "aeb6bcfe274b70a14fb067a5e5578264db0fa9b51af5e0ba159158f329e06e77",
+    "second_root": "5dc9da79a70659a9ad559cb701ded9a2ab9d823aad2f4960cfe370eff4604328",
+    "proof": [
+     "0298d122906dcfc10892cb53a73992fc5b9f493ea4c9badb27b791b4127a7fe7",
+     "07506a85fd9dd2f120eb694f86011e5bb4662e5c415a62917033d4a9624487e7",
+     "fac54203e7cc696cf0dfcb42c92a1d9dbaf70ad9e621f4bd8d98662f00e3c125"
+    ]
+   },
+   "expect": {
+    "verdict": "FAIL"
+   }
+  },
+  {
+   "id": "proof-extended",
+   "description": "",
+   "input": {
+    "first_size": 3,
+    "second_size": 8,
+    "first_root": "aeb6bcfe274b70a14fb067a5e5578264db0fa9b51af5e0ba159158f329e06e77",
+    "second_root": "5dc9da79a70659a9ad559cb701ded9a2ab9d823aad2f4960cfe370eff4604328",
+    "proof": [
+     "0298d122906dcfc10892cb53a73992fc5b9f493ea4c9badb27b791b4127a7fe7",
+     "07506a85fd9dd2f120eb694f86011e5bb4662e5c415a62917033d4a9624487e7",
+     "fac54203e7cc696cf0dfcb42c92a1d9dbaf70ad9e621f4bd8d98662f00e3c125",
+     "6b47aaf29ee3c2af9af889bc1fb9254dabd31177f16232dd6aab035ca39bf6e4",
+     "2d711642b726b04401627ca9fbac32f5c8530fb1903cc4db02258717921a4881"
+    ]
+   },
+   "expect": {
+    "verdict": "FAIL"
+   }
+  },
+  {
+   "id": "proof-hash-flipped",
+   "description": "",
+   "input": {
+    "first_size": 3,
+    "second_size": 8,
+    "first_root": "aeb6bcfe274b70a14fb067a5e5578264db0fa9b51af5e0ba159158f329e06e77",
+    "second_root": "5dc9da79a70659a9ad559cb701ded9a2ab9d823aad2f4960cfe370eff4604328",
+    "proof": [
+     "0298d122906dcfc10892cb53a73992fc5b9f493ea4c9badb27b791b4127a7fe0",
+     "07506a85fd9dd2f120eb694f86011e5bb4662e5c415a62917033d4a9624487e7",
+     "fac54203e7cc696cf0dfcb42c92a1d9dbaf70ad9e621f4bd8d98662f00e3c125",
+     "6b47aaf29ee3c2af9af889bc1fb9254dabd31177f16232dd6aab035ca39bf6e4"
+    ]
+   },
+   "expect": {
+    "verdict": "FAIL"
+   }
+  },
+  {
+   "id": "first-larger-than-second",
+   "description": "",
+   "input": {
+    "first_size": 5,
+    "second_size": 3,
+    "first_root": "4e3bbb1f7b478dcfe71fb631631519a3bca12c9aefca1612bfce4c13a86264d4",
+    "second_root": "aeb6bcfe274b70a14fb067a5e5578264db0fa9b51af5e0ba159158f329e06e77",
+    "proof": []
+   },
+   "expect": {
+    "verdict": "FAIL"
+   }
+  },
+  {
+   "id": "equal-sizes-different-roots",
+   "description": "",
+   "input": {
+    "first_size": 4,
+    "second_size": 4,
+    "first_root": "d37ee418976dd95753c1c73862b9398fa2a2cf9b4ff0fdfe8b30cd95209614b7",
+    "second_root": "4e3bbb1f7b478dcfe71fb631631519a3bca12c9aefca1612bfce4c13a86264d4",
+    "proof": []
+   },
+   "expect": {
+    "verdict": "FAIL"
+   }
+  },
+  {
+   "id": "equal-sizes-nonempty-proof",
+   "description": "",
+   "input": {
+    "first_size": 4,
+    "second_size": 4,
+    "first_root": "d37ee418976dd95753c1c73862b9398fa2a2cf9b4ff0fdfe8b30cd95209614b7",
+    "second_root": "d37ee418976dd95753c1c73862b9398fa2a2cf9b4ff0fdfe8b30cd95209614b7",
+    "proof": [
+     "2d711642b726b04401627ca9fbac32f5c8530fb1903cc4db02258717921a4881"
+    ]
+   },
+   "expect": {
+    "verdict": "FAIL"
+   }
+  },
+  {
+   "id": "from-empty-nonempty-proof",
+   "description": "",
+   "input": {
+    "first_size": 0,
+    "second_size": 5,
+    "first_root": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "second_root": "4e3bbb1f7b478dcfe71fb631631519a3bca12c9aefca1612bfce4c13a86264d4",
+    "proof": [
+     "2d711642b726b04401627ca9fbac32f5c8530fb1903cc4db02258717921a4881"
+    ]
+   },
+   "expect": {
+    "verdict": "FAIL"
+   }
+  },
+  {
+   "id": "growing-tree-without-proof",
+   "description": "",
+   "input": {
+    "first_size": 3,
+    "second_size": 8,
+    "first_root": "aeb6bcfe274b70a14fb067a5e5578264db0fa9b51af5e0ba159158f329e06e77",
+    "second_root": "5dc9da79a70659a9ad559cb701ded9a2ab9d823aad2f4960cfe370eff4604328",
+    "proof": []
+   },
+   "expect": {
+    "verdict": "FAIL"
+   }
+  }
+ ]
+}

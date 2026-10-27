@@ -1,0 +1,239 @@
+{
+ "vector": "1.0",
+ "operation": "verify_spore",
+ "spec": "Evidence Format 1.0 section 12",
+ "description": "Spore documents: the stop_key_holders list and the closed schema.",
+ "cases": [
+  {
+   "id": "minimal",
+   "description": "the smallest valid Spore: one human stop key holder",
+   "input": {
+    "spore_json": "{\n \"spore\": \"1.0\",\n \"ilorium\": \"1.0\",\n \"organism\": \"organism-zero\",\n \"domain\": \"example.org\",\n \"stop_key_holders\": [\n  {\n   \"kind\": \"human\",\n   \"id\": \"holder-1\",\n   \"name\": \"Holder 1\",\n   \"contact\": \"holder1@example.org\",\n   \"credential\": \"https://example.org/credentials/1\"\n  }\n ]\n}"
+   },
+   "expect": {
+    "verdict": "PASS",
+    "checks": {
+     "spore.schema": "PASS",
+     "spore.holders": "PASS"
+    }
+   }
+  },
+  {
+   "id": "full",
+   "description": "every optional field, two holders (a human and an institution)",
+   "input": {
+    "spore_json": "{\n \"spore\": \"1.0\",\n \"ilorium\": \"1.0\",\n \"organism\": \"organism-zero\",\n \"domain\": \"example.org\",\n \"stop_key_holders\": [\n  {\n   \"kind\": \"human\",\n   \"id\": \"holder-1\",\n   \"name\": \"Holder 1\",\n   \"contact\": \"holder1@example.org\",\n   \"credential\": \"https://example.org/credentials/1\"\n  },\n  {\n   \"kind\": \"institution\",\n   \"id\": \"holder-2\",\n   \"name\": \"Holder 2\",\n   \"contact\": \"holder2@example.org\",\n   \"credential\": \"https://example.org/credentials/2\"\n  }\n ],\n \"genome\": \"1.0\",\n \"probe\": \"1.0\",\n \"membrane\": [\n  \"github.com/example\"\n ],\n \"responsible\": \"Example Founder\",\n \"threshold\": {\n  \"platform\": \"github\",\n  \"group\": \"example/core\",\n  \"sentinel\": \"example/sentinel\",\n  \"commands\": [\n   \"/stop\"\n  ]\n },\n \"agents\": {\n  \"oz-architect\": [\n   \"oz-architect[bot]\"\n  ]\n },\n \"pulse_key\": \"ed25519:AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=\",\n \"pulse\": {\n  \"every_beats\": 100,\n  \"max_interval_s\": 3600,\n  \"challenge_deadline_s\": 300\n },\n \"checkpoints\": {\n  \"url\": \"https://example.org/checkpoints\",\n  \"every_beats\": 100,\n  \"max_interval_s\": 3600\n },\n \"witnesses\": [\n  \"witness-a\"\n ],\n \"humans\": [\n  {\n   \"id\": \"founder\",\n   \"role\": \"founder\",\n   \"accounts\": [\n    \"github:founder\"\n   ]\n  }\n ],\n \"announce\": true\n}"
+   },
+   "expect": {
+    "verdict": "PASS",
+    "checks": {}
+   }
+  },
+  {
+   "id": "wardens",
+   "description": "three holders: anyone can stop, so any number is valid",
+   "input": {
+    "spore_json": "{\n \"spore\": \"1.0\",\n \"ilorium\": \"1.0\",\n \"organism\": \"organism-zero\",\n \"domain\": \"example.org\",\n \"stop_key_holders\": [\n  {\n   \"kind\": \"institution\",\n   \"id\": \"holder-1\",\n   \"name\": \"Holder 1\",\n   \"contact\": \"holder1@example.org\",\n   \"credential\": \"https://example.org/credentials/1\"\n  },\n  {\n   \"kind\": \"institution\",\n   \"id\": \"holder-2\",\n   \"name\": \"Holder 2\",\n   \"contact\": \"holder2@example.org\",\n   \"credential\": \"https://example.org/credentials/2\"\n  },\n  {\n   \"kind\": \"human\",\n   \"id\": \"holder-3\",\n   \"name\": \"Holder 3\",\n   \"contact\": \"holder3@example.org\",\n   \"credential\": \"https://example.org/credentials/3\"\n  }\n ]\n}"
+   },
+   "expect": {
+    "verdict": "PASS",
+    "checks": {}
+   }
+  },
+  {
+   "id": "old-singular-field",
+   "description": "the draft singular stop_key_holder is not accepted",
+   "input": {
+    "spore_json": "{\"spore\": \"1.0\", \"ilorium\": \"1.0\", \"organism\": \"organism-zero\", \"domain\": \"example.org\", \"stop_key_holder\": {\"kind\": \"human\", \"id\": \"holder-1\", \"name\": \"Holder 1\", \"contact\": \"holder1@example.org\", \"credential\": \"https://example.org/credentials/1\"}}"
+   },
+   "expect": {
+    "verdict": "FAIL",
+    "checks": {
+     "spore.schema": "FAIL"
+    }
+   }
+  },
+  {
+   "id": "no-holders-field",
+   "description": "stop_key_holders is required",
+   "input": {
+    "spore_json": "{\"spore\": \"1.0\", \"ilorium\": \"1.0\", \"organism\": \"organism-zero\", \"domain\": \"example.org\"}"
+   },
+   "expect": {
+    "verdict": "FAIL",
+    "checks": {
+     "spore.schema": "FAIL"
+    }
+   }
+  },
+  {
+   "id": "empty-holders",
+   "description": "at least one holder",
+   "input": {
+    "spore_json": "{\n \"spore\": \"1.0\",\n \"ilorium\": \"1.0\",\n \"organism\": \"organism-zero\",\n \"domain\": \"example.org\",\n \"stop_key_holders\": []\n}"
+   },
+   "expect": {
+    "verdict": "FAIL",
+    "checks": {
+     "spore.schema": "FAIL"
+    }
+   }
+  },
+  {
+   "id": "holder-kind-organism",
+   "description": "a holder is never an organism",
+   "input": {
+    "spore_json": "{\n \"spore\": \"1.0\",\n \"ilorium\": \"1.0\",\n \"organism\": \"organism-zero\",\n \"domain\": \"example.org\",\n \"stop_key_holders\": [\n  {\n   \"kind\": \"organism\",\n   \"id\": \"holder-1\",\n   \"name\": \"Holder 1\",\n   \"contact\": \"holder1@example.org\",\n   \"credential\": \"https://example.org/credentials/1\"\n  }\n ]\n}"
+   },
+   "expect": {
+    "verdict": "FAIL",
+    "checks": {
+     "spore.schema": "FAIL"
+    }
+   }
+  },
+  {
+   "id": "holder-missing-contact",
+   "description": "every holder needs a contact",
+   "input": {
+    "spore_json": "{\n \"spore\": \"1.0\",\n \"ilorium\": \"1.0\",\n \"organism\": \"organism-zero\",\n \"domain\": \"example.org\",\n \"stop_key_holders\": [\n  {\n   \"kind\": \"human\",\n   \"id\": \"holder-1\",\n   \"name\": \"Holder 1\",\n   \"credential\": \"https://example.org/credentials/1\"\n  }\n ]\n}"
+   },
+   "expect": {
+    "verdict": "FAIL",
+    "checks": {
+     "spore.schema": "FAIL"
+    }
+   }
+  },
+  {
+   "id": "holder-missing-credential",
+   "description": "every holder needs a credential",
+   "input": {
+    "spore_json": "{\n \"spore\": \"1.0\",\n \"ilorium\": \"1.0\",\n \"organism\": \"organism-zero\",\n \"domain\": \"example.org\",\n \"stop_key_holders\": [\n  {\n   \"kind\": \"human\",\n   \"id\": \"holder-1\",\n   \"name\": \"Holder 1\",\n   \"contact\": \"holder1@example.org\"\n  }\n ]\n}"
+   },
+   "expect": {
+    "verdict": "FAIL",
+    "checks": {
+     "spore.schema": "FAIL"
+    }
+   }
+  },
+  {
+   "id": "holder-extra-field",
+   "description": "holders are closed objects",
+   "input": {
+    "spore_json": "{\n \"spore\": \"1.0\",\n \"ilorium\": \"1.0\",\n \"organism\": \"organism-zero\",\n \"domain\": \"example.org\",\n \"stop_key_holders\": [\n  {\n   \"kind\": \"human\",\n   \"id\": \"holder-1\",\n   \"name\": \"Holder 1\",\n   \"contact\": \"holder1@example.org\",\n   \"credential\": \"https://example.org/credentials/1\",\n   \"extra\": \"x\"\n  }\n ]\n}"
+   },
+   "expect": {
+    "verdict": "FAIL",
+    "checks": {
+     "spore.schema": "FAIL"
+    }
+   }
+  },
+  {
+   "id": "duplicate-holder-id",
+   "description": "holder ids are unique",
+   "input": {
+    "spore_json": "{\n \"spore\": \"1.0\",\n \"ilorium\": \"1.0\",\n \"organism\": \"organism-zero\",\n \"domain\": \"example.org\",\n \"stop_key_holders\": [\n  {\n   \"kind\": \"human\",\n   \"id\": \"holder-1\",\n   \"name\": \"Holder 1\",\n   \"contact\": \"holder1@example.org\",\n   \"credential\": \"https://example.org/credentials/1\"\n  },\n  {\n   \"kind\": \"human\",\n   \"id\": \"holder-1\",\n   \"name\": \"Holder 1\",\n   \"contact\": \"holder1@example.org\",\n   \"credential\": \"https://example.org/credentials/1\"\n  }\n ]\n}"
+   },
+   "expect": {
+    "verdict": "FAIL",
+    "checks": {
+     "spore.holders": "FAIL"
+    }
+   }
+  },
+  {
+   "id": "unknown-field",
+   "description": "the Spore is a closed object",
+   "input": {
+    "spore_json": "{\n \"spore\": \"1.0\",\n \"ilorium\": \"1.0\",\n \"organism\": \"organism-zero\",\n \"domain\": \"example.org\",\n \"stop_key_holders\": [\n  {\n   \"kind\": \"human\",\n   \"id\": \"holder-1\",\n   \"name\": \"Holder 1\",\n   \"contact\": \"holder1@example.org\",\n   \"credential\": \"https://example.org/credentials/1\"\n  }\n ],\n \"surprise\": 1\n}"
+   },
+   "expect": {
+    "verdict": "FAIL",
+    "checks": {
+     "spore.schema": "FAIL"
+    }
+   }
+  },
+  {
+   "id": "wrong-version",
+   "description": "spore must be 1.0",
+   "input": {
+    "spore_json": "{\n \"spore\": \"2.0\",\n \"ilorium\": \"1.0\",\n \"organism\": \"organism-zero\",\n \"domain\": \"example.org\",\n \"stop_key_holders\": [\n  {\n   \"kind\": \"human\",\n   \"id\": \"holder-1\",\n   \"name\": \"Holder 1\",\n   \"contact\": \"holder1@example.org\",\n   \"credential\": \"https://example.org/credentials/1\"\n  }\n ]\n}"
+   },
+   "expect": {
+    "verdict": "FAIL",
+    "checks": {
+     "spore.schema": "FAIL"
+    }
+   }
+  },
+  {
+   "id": "duplicate-key",
+   "description": "duplicate member names are rejected",
+   "input": {
+    "spore_json": "{\"spore\":\"1.0\",\"spore\":\"1.0\"}"
+   },
+   "expect": {
+    "verdict": "FAIL",
+    "checks": {
+     "spore.parse": "FAIL"
+    }
+   }
+  },
+  {
+   "id": "float",
+   "description": "numbers are integers",
+   "input": {
+    "spore_json": "{\n \"spore\": \"1.0\",\n \"ilorium\": \"1.0\",\n \"organism\": \"organism-zero\",\n \"domain\": \"example.org\",\n \"stop_key_holders\": [\n  {\n   \"kind\": \"human\",\n   \"id\": \"holder-1\",\n   \"name\": \"Holder 1\",\n   \"contact\": \"holder1@example.org\",\n   \"credential\": \"https://example.org/credentials/1\"\n  }\n ],\n \"pulse\": {\n  \"every_beats\": 1.5,\n  \"max_interval_s\": 1,\n  \"challenge_deadline_s\": 1\n }\n}"
+   },
+   "expect": {
+    "verdict": "FAIL",
+    "checks": {
+     "spore.parse": "FAIL"
+    }
+   }
+  },
+  {
+   "id": "not-an-object",
+   "description": "a Spore is an object",
+   "input": {
+    "spore_json": "[]"
+   },
+   "expect": {
+    "verdict": "FAIL",
+    "checks": {
+     "spore.parse": "FAIL"
+    }
+   }
+  },
+  {
+   "id": "bad-pulse-key",
+   "description": "pulse_key is an Ed25519 key",
+   "input": {
+    "spore_json": "{\n \"spore\": \"1.0\",\n \"ilorium\": \"1.0\",\n \"organism\": \"organism-zero\",\n \"domain\": \"example.org\",\n \"stop_key_holders\": [\n  {\n   \"kind\": \"human\",\n   \"id\": \"holder-1\",\n   \"name\": \"Holder 1\",\n   \"contact\": \"holder1@example.org\",\n   \"credential\": \"https://example.org/credentials/1\"\n  }\n ],\n \"pulse_key\": \"ed25519:short\"\n}"
+   },
+   "expect": {
+    "verdict": "FAIL",
+    "checks": {
+     "spore.schema": "FAIL"
+    }
+   }
+  },
+  {
+   "id": "http-checkpoints",
+   "description": "checkpoint url must be https",
+   "input": {
+    "spore_json": "{\n \"spore\": \"1.0\",\n \"ilorium\": \"1.0\",\n \"organism\": \"organism-zero\",\n \"domain\": \"example.org\",\n \"stop_key_holders\": [\n  {\n   \"kind\": \"human\",\n   \"id\": \"holder-1\",\n   \"name\": \"Holder 1\",\n   \"contact\": \"holder1@example.org\",\n   \"credential\": \"https://example.org/credentials/1\"\n  }\n ],\n \"checkpoints\": {\n  \"url\": \"http://example.org/c\",\n  \"every_beats\": 1,\n  \"max_interval_s\": 1\n }\n}"
+   },
+   "expect": {
+    "verdict": "FAIL",
+    "checks": {
+     "spore.schema": "FAIL"
+    }
+   }
+  }
+ ]
+}

@@ -1,0 +1,16 @@
+Ilorium protocol
+Copyright 2026 The Ilorium Authors
+
+Code, schemas, conformity vectors, examples and tools in this repository are
+licensed under the Apache License, Version 2.0 (see LICENSE).
+
+Normative text (the Genome, the specifications, governance, the whitepaper,
+the glossary, the manifest, the changelog and the other documents) is licensed
+under the Creative Commons Attribution 4.0 International license
+(see LICENSE-SPECS).
+
+The Code of Conduct is adapted from the Contributor Covenant, version 2.1,
+available at https://www.contributor-covenant.org/version/2/1/code_of_conduct/,
+licensed under CC BY 4.0.
+
+Ilorium is a protocol, not a company. No one owns it.

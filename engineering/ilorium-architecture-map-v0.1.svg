@@ -1,0 +1,218 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="2400" height="2280" viewBox="0 0 2400 2280" role="img" aria-labelledby="title desc"><title id="title">Ilorium reference architecture v0.1</title><desc id="desc">Reference architecture as decided in architecture-v1.md; only M0 (the verifier) exists. Four branches: organism, evidence, independent verification, public commons and governance. Bottom diagrams show evidence flow, an actual four-leaf Merkle structure and independent human stop control.</desc><rect width="100%" height="100%" fill="#10131B"/>
+<text x="80" y="94.36" font-family="DejaVu Sans,Arial,sans-serif" font-size="48" font-weight="700" fill="#EEF1F7" text-anchor="start">ILORIUM</text>
+<text x="80" y="142.14" font-family="DejaVu Sans,Arial,sans-serif" font-size="27" font-weight="400" fill="#A8B1C4" text-anchor="start">Reference architecture / a map of responsibilities</text>
+<text x="2320" y="83.86" font-family="DejaVu Sans,Arial,sans-serif" font-size="23" font-weight="400" fill="#91A6FF" text-anchor="end">DRAFT  v0.1</text>
+<text x="2320" y="121.4" font-family="DejaVu Sans,Arial,sans-serif" font-size="20" font-weight="400" fill="#A8B1C4" text-anchor="end">24 OCT 2026 · Only M0 exists · Nothing deployed</text>
+<rect x="875" y="205" width="650" height="110" rx="16" fill="#222A41" stroke="#91A6FF" stroke-width="2"/>
+<text x="1200" y="248.78" font-family="DejaVu Sans,Arial,sans-serif" font-size="29" font-weight="700" fill="#EEF1F7" text-anchor="middle">THE OPEN PROTOCOL</text>
+<text x="1200" y="288.22" font-family="DejaVu Sans,Arial,sans-serif" font-size="21" font-weight="400" fill="#A8B1C4" text-anchor="middle">Rules · formats · independently checkable evidence</text>
+<polyline points="1200,315 1200,345 335,345 335,385" fill="none" stroke="#91A6FF" stroke-width="2"/>
+<rect x="80" y="385" width="510" height="100" rx="16" fill="#202637"/>
+<text x="102" y="420.5" font-family="DejaVu Sans,Arial,sans-serif" font-size="25" font-weight="700" fill="#91A6FF" text-anchor="start">01  ORGANISM</text>
+<text x="102" y="456.4" font-family="DejaVu Sans,Arial,sans-serif" font-size="20" font-weight="400" fill="#A8B1C4" text-anchor="start">Operator-controlled environment</text>
+<polyline points="335,485 335,1290" fill="none" stroke="#414A60" stroke-width="2"/>
+<rect x="80" y="515" width="510" height="107" rx="16" fill="#1A2030"/>
+<rect x="80" y="515" width="5" height="107" rx="2" fill="#91A6FF"/>
+<text x="102" y="549.5" font-family="DejaVu Sans,Arial,sans-serif" font-size="25" font-weight="700" fill="#EEF1F7" text-anchor="start">Agents + business data</text>
+<text x="102" y="580.58" font-family="DejaVu Sans,Arial,sans-serif" font-size="19" font-weight="400" fill="#A8B1C4" text-anchor="start">Existing runtime, tools and business DB</text>
+<text x="102" y="606.12" font-family="DejaVu Sans,Arial,sans-serif" font-size="16" font-weight="400" fill="#91A6FF" text-anchor="start">ORGANISM / not prescribed</text>
+<rect x="80" y="645" width="510" height="107" rx="16" fill="#1A2030"/>
+<rect x="80" y="645" width="5" height="107" rx="2" fill="#91A6FF"/>
+<text x="102" y="679.5" font-family="DejaVu Sans,Arial,sans-serif" font-size="25" font-weight="700" fill="#EEF1F7" text-anchor="start">Threshold + Sentinel</text>
+<text x="102" y="710.58" font-family="DejaVu Sans,Arial,sans-serif" font-size="19" font-weight="400" fill="#A8B1C4" text-anchor="start">Human instructions and attribution</text>
+<text x="102" y="736.12" font-family="DejaVu Sans,Arial,sans-serif" font-size="16" font-weight="400" fill="#91A6FF" text-anchor="start">M3 / authenticated entry</text>
+<rect x="80" y="775" width="510" height="107" rx="16" fill="#1A2030"/>
+<rect x="80" y="775" width="5" height="107" rx="2" fill="#91A6FF"/>
+<text x="102" y="809.5" font-family="DejaVu Sans,Arial,sans-serif" font-size="25" font-weight="700" fill="#EEF1F7" text-anchor="start">Collectors</text>
+<text x="102" y="840.58" font-family="DejaVu Sans,Arial,sans-serif" font-size="19" font-weight="400" fill="#A8B1C4" text-anchor="start">Read observations from declared sources</text>
+<text x="102" y="866.12" font-family="DejaVu Sans,Arial,sans-serif" font-size="16" font-weight="400" fill="#91A6FF" text-anchor="start">M2 / coverage is explicit</text>
+<rect x="80" y="905" width="510" height="107" rx="16" fill="#1A2030"/>
+<rect x="80" y="905" width="5" height="107" rx="2" fill="#91A6FF"/>
+<text x="102" y="939.5" font-family="DejaVu Sans,Arial,sans-serif" font-size="25" font-weight="700" fill="#EEF1F7" text-anchor="start">Probe</text>
+<text x="102" y="970.58" font-family="DejaVu Sans,Arial,sans-serif" font-size="19" font-weight="400" fill="#A8B1C4" text-anchor="start">Deterministic recorder; Go (decided 2026-10-20)</text>
+<text x="102" y="996.12" font-family="DejaVu Sans,Arial,sans-serif" font-size="16" font-weight="400" fill="#91A6FF" text-anchor="start">M1+ / own isolated service; key custody in a separate daemon</text>
+<rect x="80" y="1035" width="510" height="107" rx="16" fill="#1A2030"/>
+<rect x="80" y="1035" width="5" height="107" rx="2" fill="#91A6FF"/>
+<text x="102" y="1069.5" font-family="DejaVu Sans,Arial,sans-serif" font-size="25" font-weight="700" fill="#EEF1F7" text-anchor="start">Gate + stop controller</text>
+<text x="102" y="1100.58" font-family="DejaVu Sans,Arial,sans-serif" font-size="19" font-weight="400" fill="#A8B1C4" text-anchor="start">Separate permissions and revocation</text>
+<text x="102" y="1126.12" font-family="DejaVu Sans,Arial,sans-serif" font-size="16" font-weight="400" fill="#91A6FF" text-anchor="start">M6 gate / basic stop before live actions</text>
+<rect x="80" y="1165" width="510" height="107" rx="16" fill="#1A2030"/>
+<rect x="80" y="1165" width="5" height="107" rx="2" fill="#91A6FF"/>
+<text x="102" y="1199.5" font-family="DejaVu Sans,Arial,sans-serif" font-size="25" font-weight="700" fill="#EEF1F7" text-anchor="start">Installation + keys</text>
+<text x="102" y="1230.58" font-family="DejaVu Sans,Arial,sans-serif" font-size="19" font-weight="400" fill="#A8B1C4" text-anchor="start">Service or container; scoped credentials</text>
+<text x="102" y="1256.12" font-family="DejaVu Sans,Arial,sans-serif" font-size="16" font-weight="400" fill="#91A6FF" text-anchor="start">No agent access to human stop keys</text>
+<polyline points="1200,315 1200,345 912,345 912,385" fill="none" stroke="#79CDB0" stroke-width="2"/>
+<rect x="657" y="385" width="510" height="100" rx="16" fill="#202637"/>
+<text x="679" y="420.5" font-family="DejaVu Sans,Arial,sans-serif" font-size="25" font-weight="700" fill="#79CDB0" text-anchor="start">02  EVIDENCE</text>
+<text x="679" y="456.4" font-family="DejaVu Sans,Arial,sans-serif" font-size="20" font-weight="400" fill="#A8B1C4" text-anchor="start">Persistent state per organism</text>
+<polyline points="912,485 912,1290" fill="none" stroke="#414A60" stroke-width="2"/>
+<rect x="657" y="515" width="510" height="107" rx="16" fill="#1A2030"/>
+<rect x="657" y="515" width="5" height="107" rx="2" fill="#79CDB0"/>
+<text x="679" y="549.5" font-family="DejaVu Sans,Arial,sans-serif" font-size="25" font-weight="700" fill="#EEF1F7" text-anchor="start">Private vault</text>
+<text x="679" y="580.58" font-family="DejaVu Sans,Arial,sans-serif" font-size="19" font-weight="400" fill="#A8B1C4" text-anchor="start">Encrypted evidence; restricted access</text>
+<text x="679" y="606.12" font-family="DejaVu Sans,Arial,sans-serif" font-size="16" font-weight="400" fill="#79CDB0" text-anchor="start">Private store / encryption library pending</text>
+<rect x="657" y="645" width="510" height="107" rx="16" fill="#1A2030"/>
+<rect x="657" y="645" width="5" height="107" rx="2" fill="#79CDB0"/>
+<text x="679" y="679.5" font-family="DejaVu Sans,Arial,sans-serif" font-size="25" font-weight="700" fill="#EEF1F7" text-anchor="start">Strata</text>
+<text x="679" y="710.58" font-family="DejaVu Sans,Arial,sans-serif" font-size="19" font-weight="400" fill="#A8B1C4" text-anchor="start">Durable events, sequence and outbox</text>
+<text x="679" y="736.12" font-family="DejaVu Sans,Arial,sans-serif" font-size="16" font-weight="400" fill="#79CDB0" text-anchor="start">M1 / local append-only store (SQLite candidate)</text>
+<rect x="657" y="775" width="510" height="107" rx="16" fill="#1A2030"/>
+<rect x="657" y="775" width="5" height="107" rx="2" fill="#79CDB0"/>
+<text x="679" y="809.5" font-family="DejaVu Sans,Arial,sans-serif" font-size="25" font-weight="700" fill="#EEF1F7" text-anchor="start">Merkle engine</text>
+<text x="679" y="840.58" font-family="DejaVu Sans,Arial,sans-serif" font-size="19" font-weight="400" fill="#A8B1C4" text-anchor="start">Canonical event bytes → SHA-256 tree</text>
+<text x="679" y="866.12" font-family="DejaVu Sans,Arial,sans-serif" font-size="16" font-weight="400" fill="#79CDB0" text-anchor="start">M0 done / RFC 6962 tree, RFC 9162 proofs</text>
+<rect x="657" y="905" width="510" height="107" rx="16" fill="#1A2030"/>
+<rect x="657" y="905" width="5" height="107" rx="2" fill="#79CDB0"/>
+<text x="679" y="939.5" font-family="DejaVu Sans,Arial,sans-serif" font-size="25" font-weight="700" fill="#EEF1F7" text-anchor="start">Checkpoint + Pulse</text>
+<text x="679" y="970.58" font-family="DejaVu Sans,Arial,sans-serif" font-size="19" font-weight="400" fill="#A8B1C4" text-anchor="start">C2SP signed note + sidecar; presence is not production</text>
+<text x="679" y="996.12" font-family="DejaVu Sans,Arial,sans-serif" font-size="16" font-weight="400" fill="#79CDB0" text-anchor="start">M1 checkpoint / M4 Pulse</text>
+<rect x="657" y="1035" width="510" height="107" rx="16" fill="#1A2030"/>
+<rect x="657" y="1035" width="5" height="107" rx="2" fill="#79CDB0"/>
+<text x="679" y="1069.5" font-family="DejaVu Sans,Arial,sans-serif" font-size="25" font-weight="700" fill="#EEF1F7" text-anchor="start">Publisher + Evidence Bundle</text>
+<text x="679" y="1100.58" font-family="DejaVu Sans,Arial,sans-serif" font-size="19" font-weight="400" fill="#A8B1C4" text-anchor="start">Public-safe records and exportable proofs</text>
+<text x="679" y="1126.12" font-family="DejaVu Sans,Arial,sans-serif" font-size="16" font-weight="400" fill="#79CDB0" text-anchor="start">Public subset / never raw secrets</text>
+<rect x="657" y="1165" width="510" height="107" rx="16" fill="#1A2030"/>
+<rect x="657" y="1165" width="5" height="107" rx="2" fill="#79CDB0"/>
+<text x="679" y="1199.5" font-family="DejaVu Sans,Arial,sans-serif" font-size="25" font-weight="700" fill="#EEF1F7" text-anchor="start">Backups + recovery</text>
+<text x="679" y="1230.58" font-family="DejaVu Sans,Arial,sans-serif" font-size="19" font-weight="400" fill="#A8B1C4" text-anchor="start">Consistent snapshots and restore drills</text>
+<text x="679" y="1256.12" font-family="DejaVu Sans,Arial,sans-serif" font-size="16" font-weight="400" fill="#79CDB0" text-anchor="start">Hashes alone cannot recover content</text>
+<polyline points="1200,315 1200,345 1488,345 1488,385" fill="none" stroke="#E7B982" stroke-width="2"/>
+<rect x="1233" y="385" width="510" height="100" rx="16" fill="#202637"/>
+<text x="1255" y="420.5" font-family="DejaVu Sans,Arial,sans-serif" font-size="25" font-weight="700" fill="#E7B982" text-anchor="start">03  VERIFICATION</text>
+<text x="1255" y="456.4" font-family="DejaVu Sans,Arial,sans-serif" font-size="20" font-weight="400" fill="#A8B1C4" text-anchor="start">Independent operators and clients</text>
+<polyline points="1488,485 1488,1290" fill="none" stroke="#414A60" stroke-width="2"/>
+<rect x="1233" y="515" width="510" height="107" rx="16" fill="#1A2030"/>
+<rect x="1233" y="515" width="5" height="107" rx="2" fill="#E7B982"/>
+<text x="1255" y="549.5" font-family="DejaVu Sans,Arial,sans-serif" font-size="25" font-weight="700" fill="#EEF1F7" text-anchor="start">External witnesses</text>
+<text x="1255" y="580.58" font-family="DejaVu Sans,Arial,sans-serif" font-size="19" font-weight="400" fill="#A8B1C4" text-anchor="start">Consistency check + cosign; not challenge operators</text>
+<text x="1255" y="606.12" font-family="DejaVu Sans,Arial,sans-serif" font-size="16" font-weight="400" fill="#E7B982" text-anchor="start">C2SP v1.1.0 / public witnesses not yet available</text>
+<rect x="1233" y="645" width="510" height="107" rx="16" fill="#1A2030"/>
+<rect x="1233" y="645" width="5" height="107" rx="2" fill="#E7B982"/>
+<text x="1255" y="679.5" font-family="DejaVu Sans,Arial,sans-serif" font-size="25" font-weight="700" fill="#EEF1F7" text-anchor="start">Python verifier</text>
+<text x="1255" y="710.58" font-family="DejaVu Sans,Arial,sans-serif" font-size="19" font-weight="400" fill="#A8B1C4" text-anchor="start">Checks evidence without importing Probe</text>
+<text x="1255" y="736.12" font-family="DejaVu Sans,Arial,sans-serif" font-size="16" font-weight="400" fill="#E7B982" text-anchor="start">M0 done / 384 vectors / never imports the Probe</text>
+<rect x="1233" y="775" width="510" height="107" rx="16" fill="#1A2030"/>
+<rect x="1233" y="775" width="5" height="107" rx="2" fill="#E7B982"/>
+<text x="1255" y="809.5" font-family="DejaVu Sans,Arial,sans-serif" font-size="25" font-weight="700" fill="#EEF1F7" text-anchor="start">Conformity rules</text>
+<text x="1255" y="840.58" font-family="DejaVu Sans,Arial,sans-serif" font-size="19" font-weight="400" fill="#A8B1C4" text-anchor="start">Versioned tests, limits and coverage</text>
+<text x="1255" y="866.12" font-family="DejaVu Sans,Arial,sans-serif" font-size="16" font-weight="400" fill="#E7B982" text-anchor="start">Per claim / no universal PASS</text>
+<rect x="1233" y="905" width="510" height="107" rx="16" fill="#1A2030"/>
+<rect x="1233" y="905" width="5" height="107" rx="2" fill="#E7B982"/>
+<text x="1255" y="939.5" font-family="DejaVu Sans,Arial,sans-serif" font-size="25" font-weight="700" fill="#EEF1F7" text-anchor="start">Verification report</text>
+<text x="1255" y="970.58" font-family="DejaVu Sans,Arial,sans-serif" font-size="19" font-weight="400" fill="#A8B1C4" text-anchor="start">PASS · FAIL · UNKNOWN + scope</text>
+<text x="1255" y="996.12" font-family="DejaVu Sans,Arial,sans-serif" font-size="16" font-weight="400" fill="#E7B982" text-anchor="start">Freshness and source references</text>
+<rect x="1233" y="1035" width="510" height="107" rx="16" fill="#1A2030"/>
+<rect x="1233" y="1035" width="5" height="107" rx="2" fill="#E7B982"/>
+<text x="1255" y="1069.5" font-family="DejaVu Sans,Arial,sans-serif" font-size="25" font-weight="700" fill="#EEF1F7" text-anchor="start">Second verifier</text>
+<text x="1255" y="1100.58" font-family="DejaVu Sans,Arial,sans-serif" font-size="19" font-weight="400" fill="#A8B1C4" text-anchor="start">Independent implementation and vectors</text>
+<text x="1255" y="1126.12" font-family="DejaVu Sans,Arial,sans-serif" font-size="16" font-weight="400" fill="#E7B982" text-anchor="start">M7 / language to be selected</text>
+<rect x="1233" y="1165" width="510" height="107" rx="16" fill="#1A2030"/>
+<rect x="1233" y="1165" width="5" height="107" rx="2" fill="#E7B982"/>
+<text x="1255" y="1199.5" font-family="DejaVu Sans,Arial,sans-serif" font-size="25" font-weight="700" fill="#EEF1F7" text-anchor="start">Witness state</text>
+<text x="1255" y="1230.58" font-family="DejaVu Sans,Arial,sans-serif" font-size="19" font-weight="400" fill="#A8B1C4" text-anchor="start">Last trusted checkpoint, stored atomically</text>
+<text x="1255" y="1256.12" font-family="DejaVu Sans,Arial,sans-serif" font-size="16" font-weight="400" fill="#E7B982" text-anchor="start">Separate operator / own storage</text>
+<polyline points="1200,315 1200,345 2065,345 2065,385" fill="none" stroke="#BAA0E9" stroke-width="2"/>
+<rect x="1810" y="385" width="510" height="100" rx="16" fill="#202637"/>
+<text x="1832" y="420.5" font-family="DejaVu Sans,Arial,sans-serif" font-size="25" font-weight="700" fill="#BAA0E9" text-anchor="start">04  COMMONS + GOVERNANCE</text>
+<text x="1832" y="456.4" font-family="DejaVu Sans,Arial,sans-serif" font-size="20" font-weight="400" fill="#A8B1C4" text-anchor="start">Discovery, reading and stewardship</text>
+<polyline points="2065,485 2065,1290" fill="none" stroke="#414A60" stroke-width="2"/>
+<rect x="1810" y="515" width="510" height="107" rx="16" fill="#1A2030"/>
+<rect x="1810" y="515" width="5" height="107" rx="2" fill="#BAA0E9"/>
+<text x="1832" y="549.5" font-family="DejaVu Sans,Arial,sans-serif" font-size="25" font-weight="700" fill="#EEF1F7" text-anchor="start">Spore + Agent Cards</text>
+<text x="1832" y="580.58" font-family="DejaVu Sans,Arial,sans-serif" font-size="19" font-weight="400" fill="#A8B1C4" text-anchor="start">Identity, keys, endpoints and kin links</text>
+<text x="1832" y="606.12" font-family="DejaVu Sans,Arial,sans-serif" font-size="16" font-weight="400" fill="#BAA0E9" text-anchor="start">Published by each organism</text>
+<rect x="1810" y="645" width="510" height="107" rx="16" fill="#1A2030"/>
+<rect x="1810" y="645" width="5" height="107" rx="2" fill="#BAA0E9"/>
+<text x="1832" y="679.5" font-family="DejaVu Sans,Arial,sans-serif" font-size="25" font-weight="700" fill="#EEF1F7" text-anchor="start">Index worker + read API</text>
+<text x="1832" y="710.58" font-family="DejaVu Sans,Arial,sans-serif" font-size="19" font-weight="400" fill="#A8B1C4" text-anchor="start">Discover, challenge and serve open data</text>
+<text x="1832" y="736.12" font-family="DejaVu Sans,Arial,sans-serif" font-size="16" font-weight="400" fill="#BAA0E9" text-anchor="start">Language pending / replicable</text>
+<rect x="1810" y="775" width="510" height="107" rx="16" fill="#1A2030"/>
+<rect x="1810" y="775" width="5" height="107" rx="2" fill="#BAA0E9"/>
+<text x="1832" y="809.5" font-family="DejaVu Sans,Arial,sans-serif" font-size="25" font-weight="700" fill="#EEF1F7" text-anchor="start">Index database</text>
+<text x="1832" y="840.58" font-family="DejaVu Sans,Arial,sans-serif" font-size="19" font-weight="400" fill="#A8B1C4" text-anchor="start">Derived read model; storage to decide</text>
+<text x="1832" y="866.12" font-family="DejaVu Sans,Arial,sans-serif" font-size="16" font-weight="400" fill="#BAA0E9" text-anchor="start">Rebuildable / not the source of truth</text>
+<rect x="1810" y="905" width="510" height="107" rx="16" fill="#1A2030"/>
+<rect x="1810" y="905" width="5" height="107" rx="2" fill="#BAA0E9"/>
+<text x="1832" y="939.5" font-family="DejaVu Sans,Arial,sans-serif" font-size="25" font-weight="700" fill="#EEF1F7" text-anchor="start">Radiant + Vital Signs</text>
+<text x="1832" y="970.58" font-family="DejaVu Sans,Arial,sans-serif" font-size="19" font-weight="400" fill="#A8B1C4" text-anchor="start">Public view of evidence and limits</text>
+<text x="1832" y="996.12" font-family="DejaVu Sans,Arial,sans-serif" font-size="16" font-weight="400" fill="#BAA0E9" text-anchor="start">Other indexes may present other views</text>
+<rect x="1810" y="1035" width="510" height="107" rx="16" fill="#1A2030"/>
+<rect x="1810" y="1035" width="5" height="107" rx="2" fill="#BAA0E9"/>
+<text x="1832" y="1069.5" font-family="DejaVu Sans,Arial,sans-serif" font-size="25" font-weight="700" fill="#EEF1F7" text-anchor="start">Genome + IIPs + releases</text>
+<text x="1832" y="1100.58" font-family="DejaVu Sans,Arial,sans-serif" font-size="19" font-weight="400" fill="#A8B1C4" text-anchor="start">Rules, vectors, approved artifact hashes</text>
+<text x="1832" y="1126.12" font-family="DejaVu Sans,Arial,sans-serif" font-size="16" font-weight="400" fill="#BAA0E9" text-anchor="start">Human Custodians / interim: founder alone, published</text>
+<rect x="1810" y="1165" width="510" height="107" rx="16" fill="#1A2030"/>
+<rect x="1810" y="1165" width="5" height="107" rx="2" fill="#BAA0E9"/>
+<text x="1832" y="1199.5" font-family="DejaVu Sans,Arial,sans-serif" font-size="25" font-weight="700" fill="#EEF1F7" text-anchor="start">Human stop key holders</text>
+<text x="1832" y="1230.58" font-family="DejaVu Sans,Arial,sans-serif" font-size="19" font-weight="400" fill="#A8B1C4" text-anchor="start">Responsible humans / Wardens where no human founder</text>
+<text x="1832" y="1256.12" font-family="DejaVu Sans,Arial,sans-serif" font-size="16" font-weight="400" fill="#BAA0E9" text-anchor="start">Control is separate from witnessing</text>
+<polyline points="80,1340 2320,1340" fill="none" stroke="#414A60" stroke-width="2"/>
+<text x="80" y="1390.04" font-family="DejaVu Sans,Arial,sans-serif" font-size="22" font-weight="700" fill="#A8B1C4" text-anchor="start">THE EVIDENCE PATH</text>
+<rect x="80" y="1448" width="400" height="94" rx="16" fill="#202637"/>
+<text x="280" y="1483.5" font-family="DejaVu Sans,Arial,sans-serif" font-size="25" font-weight="700" fill="#EEF1F7" text-anchor="middle">Observed action</text>
+<text x="280" y="1517.4" font-family="DejaVu Sans,Arial,sans-serif" font-size="20" font-weight="400" fill="#A8B1C4" text-anchor="middle">Collector → Probe</text>
+<polyline points="470,1495 525,1495" fill="none" stroke="#91A6FF" stroke-width="3"/>
+<polygon points="525,1495 514.1946347717678,1500.2195864093349 514.1946347717678,1489.7804135906651" fill="#91A6FF"/>
+<rect x="540" y="1448" width="400" height="94" rx="16" fill="#202637"/>
+<text x="740" y="1483.5" font-family="DejaVu Sans,Arial,sans-serif" font-size="25" font-weight="700" fill="#EEF1F7" text-anchor="middle">Durable record</text>
+<text x="740" y="1517.4" font-family="DejaVu Sans,Arial,sans-serif" font-size="20" font-weight="400" fill="#A8B1C4" text-anchor="middle">Strata + Merkle</text>
+<polyline points="930,1495 985,1495" fill="none" stroke="#91A6FF" stroke-width="3"/>
+<polygon points="985,1495 974.1946347717678,1500.2195864093349 974.1946347717678,1489.7804135906651" fill="#91A6FF"/>
+<rect x="1000" y="1448" width="400" height="94" rx="16" fill="#202637"/>
+<text x="1200" y="1483.5" font-family="DejaVu Sans,Arial,sans-serif" font-size="25" font-weight="700" fill="#EEF1F7" text-anchor="middle">Signed checkpoint</text>
+<text x="1200" y="1517.4" font-family="DejaVu Sans,Arial,sans-serif" font-size="20" font-weight="400" fill="#A8B1C4" text-anchor="middle">Witness cosignature</text>
+<polyline points="1390,1495 1445,1495" fill="none" stroke="#91A6FF" stroke-width="3"/>
+<polygon points="1445,1495 1434.1946347717678,1500.2195864093349 1434.1946347717678,1489.7804135906651" fill="#91A6FF"/>
+<rect x="1460" y="1448" width="400" height="94" rx="16" fill="#202637"/>
+<text x="1660" y="1483.5" font-family="DejaVu Sans,Arial,sans-serif" font-size="25" font-weight="700" fill="#EEF1F7" text-anchor="middle">Evidence Bundle</text>
+<text x="1660" y="1517.4" font-family="DejaVu Sans,Arial,sans-serif" font-size="20" font-weight="400" fill="#A8B1C4" text-anchor="middle">Independent verifier</text>
+<polyline points="1850,1495 1905,1495" fill="none" stroke="#91A6FF" stroke-width="3"/>
+<polygon points="1905,1495 1894.1946347717678,1500.2195864093349 1894.1946347717678,1489.7804135906651" fill="#91A6FF"/>
+<rect x="1920" y="1448" width="400" height="94" rx="16" fill="#202637"/>
+<text x="2120" y="1483.5" font-family="DejaVu Sans,Arial,sans-serif" font-size="25" font-weight="700" fill="#EEF1F7" text-anchor="middle">Scoped result</text>
+<text x="2120" y="1517.4" font-family="DejaVu Sans,Arial,sans-serif" font-size="20" font-weight="400" fill="#A8B1C4" text-anchor="middle">Vital Signs / any index</text>
+<text x="80" y="1593.86" font-family="DejaVu Sans,Arial,sans-serif" font-size="23" font-weight="400" fill="#A8B1C4" text-anchor="start">Each component keeps its own trust boundary. A signed statement can still be incomplete or false.</text>
+<polyline points="80,1640 2320,1640" fill="none" stroke="#414A60" stroke-width="2"/>
+<text x="80" y="1694.68" font-family="DejaVu Sans,Arial,sans-serif" font-size="24" font-weight="700" fill="#79CDB0" text-anchor="start">INSIDE STRATA / MERKLE TREE</text>
+<rect x="90" y="2020" width="200" height="82" rx="16" fill="#1A2030"/>
+<text x="190" y="2053.86" font-family="DejaVu Sans,Arial,sans-serif" font-size="23" font-weight="400" fill="#EEF1F7" text-anchor="middle">Event 1</text>
+<text x="190" y="2084.76" font-family="DejaVu Sans,Arial,sans-serif" font-size="18" font-weight="400" fill="#A8B1C4" text-anchor="middle">leaf hash</text>
+<rect x="330" y="2020" width="200" height="82" rx="16" fill="#1A2030"/>
+<text x="430" y="2053.86" font-family="DejaVu Sans,Arial,sans-serif" font-size="23" font-weight="400" fill="#EEF1F7" text-anchor="middle">Event 2</text>
+<text x="430" y="2084.76" font-family="DejaVu Sans,Arial,sans-serif" font-size="18" font-weight="400" fill="#A8B1C4" text-anchor="middle">leaf hash</text>
+<rect x="570" y="2020" width="200" height="82" rx="16" fill="#1A2030"/>
+<text x="670" y="2053.86" font-family="DejaVu Sans,Arial,sans-serif" font-size="23" font-weight="400" fill="#EEF1F7" text-anchor="middle">Event 3</text>
+<text x="670" y="2084.76" font-family="DejaVu Sans,Arial,sans-serif" font-size="18" font-weight="400" fill="#A8B1C4" text-anchor="middle">leaf hash</text>
+<rect x="810" y="2020" width="200" height="82" rx="16" fill="#1A2030"/>
+<text x="910" y="2053.86" font-family="DejaVu Sans,Arial,sans-serif" font-size="23" font-weight="400" fill="#EEF1F7" text-anchor="middle">Event 4</text>
+<text x="910" y="2084.76" font-family="DejaVu Sans,Arial,sans-serif" font-size="18" font-weight="400" fill="#A8B1C4" text-anchor="middle">leaf hash</text>
+<polyline points="190,2020 190,1985 310,1985 310,1940" fill="none" stroke="#79CDB0" stroke-width="2"/>
+<polyline points="430,2020 430,1985 310,1985 310,1940" fill="none" stroke="#79CDB0" stroke-width="2"/>
+<rect x="190" y="1865" width="240" height="75" rx="16" fill="#1A2030"/>
+<text x="310" y="1908.86" font-family="DejaVu Sans,Arial,sans-serif" font-size="23" font-weight="400" fill="#EEF1F7" text-anchor="middle">Parent hash</text>
+<polyline points="310,1865 310,1830 550,1830 550,1795" fill="none" stroke="#79CDB0" stroke-width="2"/>
+<polyline points="670,2020 670,1985 790,1985 790,1940" fill="none" stroke="#79CDB0" stroke-width="2"/>
+<polyline points="910,2020 910,1985 790,1985 790,1940" fill="none" stroke="#79CDB0" stroke-width="2"/>
+<rect x="670" y="1865" width="240" height="75" rx="16" fill="#1A2030"/>
+<text x="790" y="1908.86" font-family="DejaVu Sans,Arial,sans-serif" font-size="23" font-weight="400" fill="#EEF1F7" text-anchor="middle">Parent hash</text>
+<polyline points="790,1865 790,1830 550,1830 550,1795" fill="none" stroke="#79CDB0" stroke-width="2"/>
+<rect x="410" y="1725" width="280" height="70" rx="16" fill="#233A36" stroke="#79CDB0" stroke-width="2"/>
+<text x="550" y="1767.5" font-family="DejaVu Sans,Arial,sans-serif" font-size="25" font-weight="700" fill="#EEF1F7" text-anchor="middle">Root hash</text>
+<text x="80" y="2157.22" font-family="DejaVu Sans,Arial,sans-serif" font-size="21" font-weight="400" fill="#A8B1C4" text-anchor="start">Integrity against a cosigned root ≠ completeness or truth. Content is never in the tree, only hashes.</text>
+<text x="1300" y="1694.68" font-family="DejaVu Sans,Arial,sans-serif" font-size="24" font-weight="700" fill="#E7B982" text-anchor="start">HUMAN CONTROL / SEPARATE PATH</text>
+<rect x="1340" y="1730" width="910" height="94" rx="16" fill="#1A2030"/>
+<text x="1795" y="1767.32" font-family="DejaVu Sans,Arial,sans-serif" font-size="26" font-weight="700" fill="#EEF1F7" text-anchor="middle">Human key holder</text>
+<text x="1795" y="1802.22" font-family="DejaVu Sans,Arial,sans-serif" font-size="21" font-weight="400" fill="#A8B1C4" text-anchor="middle">Separate credentials and authority</text>
+<polyline points="1795,1824 1795,1870" fill="none" stroke="#E7B982" stroke-width="3"/>
+<polygon points="1795,1870 1789.7804135906651,1859.1946347717678 1800.2195864093349,1859.1946347717678" fill="#E7B982"/>
+<rect x="1340" y="1880" width="910" height="94" rx="16" fill="#1A2030"/>
+<text x="1795" y="1917.32" font-family="DejaVu Sans,Arial,sans-serif" font-size="26" font-weight="700" fill="#EEF1F7" text-anchor="middle">Stop controller</text>
+<text x="1795" y="1952.22" font-family="DejaVu Sans,Arial,sans-serif" font-size="21" font-weight="400" fill="#A8B1C4" text-anchor="middle">Revoke covered credentials / resources</text>
+<polyline points="1795,1974 1795,2020" fill="none" stroke="#E7B982" stroke-width="3"/>
+<polygon points="1795,2020 1789.7804135906651,2009.1946347717678 1800.2195864093349,2009.1946347717678" fill="#E7B982"/>
+<rect x="1340" y="2030" width="910" height="94" rx="16" fill="#1A2030"/>
+<text x="1795" y="2067.32" font-family="DejaVu Sans,Arial,sans-serif" font-size="26" font-weight="700" fill="#EEF1F7" text-anchor="middle">Organism infrastructure</text>
+<text x="1795" y="2102.22" font-family="DejaVu Sans,Arial,sans-serif" font-size="21" font-weight="400" fill="#A8B1C4" text-anchor="middle">Control only within the declared boundary</text>
+<text x="1300" y="2177.22" font-family="DejaVu Sans,Arial,sans-serif" font-size="21" font-weight="400" fill="#A8B1C4" text-anchor="start">The stop path must survive Probe and index failure.</text>
+<text x="80" y="2246.4" font-family="DejaVu Sans,Arial,sans-serif" font-size="20" font-weight="400" fill="#A8B1C4" text-anchor="start">DESIGN STATUS  ·  Map of architecture-v1.md (2026-10-24). M0 exists; M1–M8 are planned. Libraries, index storage and costs are open; this drawing is not protocol.</text>
+</svg>

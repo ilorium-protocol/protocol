@@ -1,0 +1,353 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://ilorium.com/schemas/1.0/vitalsigns.schema.json",
+  "title": "Ilorium Vital Signs (draft)",
+  "description": "The machine-readable Vital Signs of an organism. Evidence Format 1.0 (draft), section 14; what they present is defined in the Discovery and Growth, Proof of Life and Pulse specifications. A presentation of evidence: it establishes nothing by itself. No score, rank or seal field exists, and none can be added without a new release. Licensed under Apache-2.0.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "vitalsigns",
+    "ilorium",
+    "organism",
+    "domain",
+    "generated_at",
+    "period",
+    "bundle",
+    "web_status",
+    "latest_pulse",
+    "dimensions",
+    "conformity",
+    "provenance",
+    "stop_key_holders",
+    "limitations"
+  ],
+  "properties": {
+    "vitalsigns": {
+      "const": "1.0"
+    },
+    "ilorium": {
+      "$ref": "common.schema.json#/$defs/release"
+    },
+    "organism": {
+      "$ref": "common.schema.json#/$defs/label"
+    },
+    "domain": {
+      "$ref": "common.schema.json#/$defs/domain"
+    },
+    "generated_at": {
+      "$ref": "common.schema.json#/$defs/time"
+    },
+    "period": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "from",
+        "to"
+      ],
+      "properties": {
+        "from": {
+          "$ref": "common.schema.json#/$defs/time"
+        },
+        "to": {
+          "$ref": "common.schema.json#/$defs/time"
+        }
+      }
+    },
+    "bundle": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "url",
+        "manifest_sha256"
+      ],
+      "properties": {
+        "url": {
+          "type": "string",
+          "pattern": "^https://[^\\s]+$",
+          "maxLength": 2048
+        },
+        "manifest_sha256": {
+          "$ref": "common.schema.json#/$defs/sha256"
+        }
+      }
+    },
+    "web_status": {
+      "enum": [
+        "sighting",
+        "in_gestation",
+        "observed",
+        "verified"
+      ]
+    },
+    "latest_pulse": {
+      "oneOf": [
+        {
+          "type": "null"
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "seq",
+            "beat",
+            "translation_time",
+            "state",
+            "recovery"
+          ],
+          "properties": {
+            "seq": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 9007199254740991
+            },
+            "beat": {
+              "$ref": "common.schema.json#/$defs/uint"
+            },
+            "translation_time": {
+              "$ref": "common.schema.json#/$defs/time"
+            },
+            "state": {
+              "enum": [
+                "active",
+                "resting",
+                "dormant",
+                "released",
+                "coalesced"
+              ]
+            },
+            "recovery": {
+              "enum": [
+                "proven",
+                "unknown",
+                "not_restorable"
+              ]
+            }
+          }
+        }
+      ]
+    },
+    "dimensions": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "autonomy",
+        "coverage",
+        "reliability",
+        "control",
+        "human_dependency",
+        "provenance"
+      ],
+      "properties": {
+        "autonomy": {
+          "$ref": "#/$defs/dimension"
+        },
+        "coverage": {
+          "$ref": "#/$defs/dimension"
+        },
+        "reliability": {
+          "$ref": "#/$defs/dimension"
+        },
+        "control": {
+          "$ref": "#/$defs/dimension"
+        },
+        "human_dependency": {
+          "$ref": "#/$defs/dimension"
+        },
+        "provenance": {
+          "$ref": "#/$defs/dimension"
+        }
+      }
+    },
+    "conformity": {
+      "type": "array",
+      "minItems": 1,
+      "maxItems": 64,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "law",
+          "status"
+        ],
+        "properties": {
+          "law": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 64
+          },
+          "status": {
+            "enum": [
+              "conforms",
+              "does_not_conform",
+              "not_observed"
+            ]
+          }
+        }
+      }
+    },
+    "provenance": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "birth",
+        "succession",
+        "generation",
+        "parents"
+      ],
+      "properties": {
+        "birth": {
+          "enum": [
+            "founded",
+            "commissioned",
+            "assisted_birth",
+            "autogenesis"
+          ]
+        },
+        "succession": {
+          "enum": [
+            "founded",
+            "inherited",
+            "coalesced"
+          ]
+        },
+        "generation": {
+          "$ref": "common.schema.json#/$defs/uint"
+        },
+        "parents": {
+          "type": "array",
+          "maxItems": 16,
+          "items": {
+            "$ref": "common.schema.json#/$defs/domain"
+          }
+        }
+      }
+    },
+    "stop_key_holders": {
+      "type": "array",
+      "minItems": 1,
+      "maxItems": 64,
+      "items": {
+        "$ref": "common.schema.json#/$defs/stop_key_holder"
+      }
+    },
+    "limitations": {
+      "type": "array",
+      "minItems": 1,
+      "maxItems": 16,
+      "items": {
+        "$ref": "common.schema.json#/$defs/name"
+      }
+    }
+  },
+  "$defs": {
+    "dimension": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "status",
+        "newest_evidence",
+        "measures",
+        "limitations"
+      ],
+      "properties": {
+        "status": {
+          "enum": [
+            "observed",
+            "not_observed",
+            "no_activity",
+            "stale"
+          ]
+        },
+        "newest_evidence": {
+          "oneOf": [
+            {
+              "$ref": "common.schema.json#/$defs/time"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "measures": {
+          "type": "array",
+          "maxItems": 64,
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "id",
+              "count",
+              "of"
+            ],
+            "properties": {
+              "id": {
+                "$ref": "common.schema.json#/$defs/label"
+              },
+              "count": {
+                "$ref": "common.schema.json#/$defs/uint"
+              },
+              "of": {
+                "oneOf": [
+                  {
+                    "$ref": "common.schema.json#/$defs/uint"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ]
+              }
+            }
+          }
+        },
+        "limitations": {
+          "type": "array",
+          "minItems": 1,
+          "maxItems": 16,
+          "items": {
+            "$ref": "common.schema.json#/$defs/name"
+          }
+        }
+      },
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "status": {
+                "enum": [
+                  "observed",
+                  "stale"
+                ]
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "newest_evidence": {
+                "$ref": "common.schema.json#/$defs/time"
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "status": {
+                "const": "not_observed"
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "newest_evidence": {
+                "type": "null"
+              },
+              "measures": {
+                "maxItems": 0
+              }
+            }
+          }
+        }
+      ]
+    }
+  }
+}

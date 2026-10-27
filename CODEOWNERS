@@ -1,0 +1,34 @@
+# CODEOWNERS — the germline, applied to git.
+#
+# governance-v1.md, section 1: only human Genome Custodians amend the Genome.
+# This file names the humans whose review GitHub requires before a change to
+# the protected paths can merge. CODEOWNERS = the Genome Custodians.
+#
+# Interim governance (governance-v1.md, section 8): the founder is the only
+# Custodian, so every entry points to @fseldon and the founder reviews
+# everything. The org ruleset `main-protection` requires a code owner review
+# on every pull request that touches these paths.
+#
+# When two independent Custodians are in office (governance-v1.md, section 4),
+# every `@fseldon` below is replaced by the team
+# `@ilorium-protocol/genome-custodians` and the ruleset moves to two required
+# approvals. That change is itself a pull request to this file, reviewed by the
+# incoming Custodians, and is recorded in governance/decisions/.
+#
+# Order matters: the last matching pattern wins. The catch-all comes first.
+
+# Interim: the founder reviews everything.
+*                       @fseldon
+
+# Protected paths (method changes; governance-v1.md, section 3.1, "Method change").
+# → @ilorium-protocol/genome-custodians once two independent Custodians are in office (then: two approvals)
+/genome/                @fseldon
+/governance-v1.md       @fseldon
+/governance-v1.es.md    @fseldon
+/manifest.md            @fseldon
+/manifest.es.md         @fseldon
+/schemas/               @fseldon
+/vectors/               @fseldon
+/iips/                  @fseldon
+/CODEOWNERS             @fseldon
+/.github/               @fseldon

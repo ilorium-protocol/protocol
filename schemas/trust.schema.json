@@ -1,0 +1,50 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://ilorium.com/schemas/1.0/trust.schema.json",
+  "title": "Ilorium verifier trust configuration",
+  "description": "The keys and limits a verifier is configured with. In Evidence Format 1.0 (draft) these are supplied by the person running the verifier; anchoring them in the birth act is future work. Licensed under Apache-2.0.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["trust", "organism", "log", "witnesses"],
+  "properties": {
+    "trust": { "const": "1.0" },
+    "organism": { "$ref": "common.schema.json#/$defs/label" },
+    "log": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["origin", "vkeys"],
+      "properties": {
+        "origin": { "$ref": "common.schema.json#/$defs/origin" },
+        "vkeys": {
+          "type": "array",
+          "minItems": 1,
+          "maxItems": 8,
+          "items": { "$ref": "common.schema.json#/$defs/vkey" }
+        }
+      }
+    },
+    "witnesses": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["quorum", "vkeys"],
+      "properties": {
+        "quorum": { "type": "integer", "minimum": 1, "maximum": 64 },
+        "vkeys": {
+          "type": "array",
+          "maxItems": 64,
+          "items": { "$ref": "common.schema.json#/$defs/vkey" }
+        }
+      }
+    },
+    "pulse_key": { "$ref": "common.schema.json#/$defs/ed25519_key" },
+    "freshness": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["max_interval_s", "grace_s"],
+      "properties": {
+        "max_interval_s": { "type": "integer", "minimum": 1, "maximum": 9007199254740991 },
+        "grace_s": { "$ref": "common.schema.json#/$defs/uint" }
+      }
+    }
+  }
+}

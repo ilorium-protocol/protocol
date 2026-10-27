@@ -1,0 +1,358 @@
+{
+ "vector": "1.0",
+ "operation": "merkle_root",
+ "spec": "Evidence Format 1.0 section 7",
+ "description": "Tree root over leaf data (leaf hash = SHA-256(0x00 || data)). The first eight leaves are the ones used in the Certificate Transparency reference tests.",
+ "cases": [
+  {
+   "id": "root-size-0",
+   "description": "RFC 6962 tree hash of the first n leaves",
+   "input": {
+    "leaves": []
+   },
+   "expect": {
+    "root": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+   }
+  },
+  {
+   "id": "root-size-1",
+   "description": "RFC 6962 tree hash of the first n leaves",
+   "input": {
+    "leaves": [
+     ""
+    ]
+   },
+   "expect": {
+    "root": "6e340b9cffb37a989ca544e6bb780a2c78901d3fb33738768511a30617afa01d"
+   }
+  },
+  {
+   "id": "root-size-2",
+   "description": "RFC 6962 tree hash of the first n leaves",
+   "input": {
+    "leaves": [
+     "",
+     "00"
+    ]
+   },
+   "expect": {
+    "root": "fac54203e7cc696cf0dfcb42c92a1d9dbaf70ad9e621f4bd8d98662f00e3c125"
+   }
+  },
+  {
+   "id": "root-size-3",
+   "description": "RFC 6962 tree hash of the first n leaves",
+   "input": {
+    "leaves": [
+     "",
+     "00",
+     "10"
+    ]
+   },
+   "expect": {
+    "root": "aeb6bcfe274b70a14fb067a5e5578264db0fa9b51af5e0ba159158f329e06e77"
+   }
+  },
+  {
+   "id": "root-size-4",
+   "description": "RFC 6962 tree hash of the first n leaves",
+   "input": {
+    "leaves": [
+     "",
+     "00",
+     "10",
+     "2021"
+    ]
+   },
+   "expect": {
+    "root": "d37ee418976dd95753c1c73862b9398fa2a2cf9b4ff0fdfe8b30cd95209614b7"
+   }
+  },
+  {
+   "id": "root-size-5",
+   "description": "RFC 6962 tree hash of the first n leaves",
+   "input": {
+    "leaves": [
+     "",
+     "00",
+     "10",
+     "2021",
+     "3031"
+    ]
+   },
+   "expect": {
+    "root": "4e3bbb1f7b478dcfe71fb631631519a3bca12c9aefca1612bfce4c13a86264d4"
+   }
+  },
+  {
+   "id": "root-size-6",
+   "description": "RFC 6962 tree hash of the first n leaves",
+   "input": {
+    "leaves": [
+     "",
+     "00",
+     "10",
+     "2021",
+     "3031",
+     "40414243"
+    ]
+   },
+   "expect": {
+    "root": "76e67dadbcdf1e10e1b74ddc608abd2f98dfb16fbce75277b5232a127f2087ef"
+   }
+  },
+  {
+   "id": "root-size-7",
+   "description": "RFC 6962 tree hash of the first n leaves",
+   "input": {
+    "leaves": [
+     "",
+     "00",
+     "10",
+     "2021",
+     "3031",
+     "40414243",
+     "5051525354555657"
+    ]
+   },
+   "expect": {
+    "root": "ddb89be403809e325750d3d263cd78929c2942b7942a34b77e122c9594a74c8c"
+   }
+  },
+  {
+   "id": "root-size-8",
+   "description": "RFC 6962 tree hash of the first n leaves",
+   "input": {
+    "leaves": [
+     "",
+     "00",
+     "10",
+     "2021",
+     "3031",
+     "40414243",
+     "5051525354555657",
+     "606162636465666768696a6b6c6d6e6f"
+    ]
+   },
+   "expect": {
+    "root": "5dc9da79a70659a9ad559cb701ded9a2ab9d823aad2f4960cfe370eff4604328"
+   }
+  },
+  {
+   "id": "root-size-9",
+   "description": "RFC 6962 tree hash of the first n leaves",
+   "input": {
+    "leaves": [
+     "",
+     "00",
+     "10",
+     "2021",
+     "3031",
+     "40414243",
+     "5051525354555657",
+     "606162636465666768696a6b6c6d6e6f",
+     "32dc"
+    ]
+   },
+   "expect": {
+    "root": "6a61c6840b374ca809d3eacd8a7116b6cea85c00c431ae9a5731040826e628c3"
+   }
+  },
+  {
+   "id": "root-size-10",
+   "description": "RFC 6962 tree hash of the first n leaves",
+   "input": {
+    "leaves": [
+     "",
+     "00",
+     "10",
+     "2021",
+     "3031",
+     "40414243",
+     "5051525354555657",
+     "606162636465666768696a6b6c6d6e6f",
+     "32dc",
+     "b4a9fc"
+    ]
+   },
+   "expect": {
+    "root": "5821d5d0e0941ff3fb4a744d83ca8abea13efea20e3b47b5dab904783858f2b6"
+   }
+  },
+  {
+   "id": "root-size-11",
+   "description": "RFC 6962 tree hash of the first n leaves",
+   "input": {
+    "leaves": [
+     "",
+     "00",
+     "10",
+     "2021",
+     "3031",
+     "40414243",
+     "5051525354555657",
+     "606162636465666768696a6b6c6d6e6f",
+     "32dc",
+     "b4a9fc",
+     "7a67ac4a"
+    ]
+   },
+   "expect": {
+    "root": "a894d8218922c8e804f4fed694c8394fb6f62bad8046cb9ba1f2ff77280e1d83"
+   }
+  },
+  {
+   "id": "root-size-12",
+   "description": "RFC 6962 tree hash of the first n leaves",
+   "input": {
+    "leaves": [
+     "",
+     "00",
+     "10",
+     "2021",
+     "3031",
+     "40414243",
+     "5051525354555657",
+     "606162636465666768696a6b6c6d6e6f",
+     "32dc",
+     "b4a9fc",
+     "7a67ac4a",
+     "2ae67d63e2"
+    ]
+   },
+   "expect": {
+    "root": "51c8561fa8e66dd99b01c293331b2116d8cf0739942fa8b63c078b1c96365e6b"
+   }
+  },
+  {
+   "id": "root-size-13",
+   "description": "RFC 6962 tree hash of the first n leaves",
+   "input": {
+    "leaves": [
+     "",
+     "00",
+     "10",
+     "2021",
+     "3031",
+     "40414243",
+     "5051525354555657",
+     "606162636465666768696a6b6c6d6e6f",
+     "32dc",
+     "b4a9fc",
+     "7a67ac4a",
+     "2ae67d63e2",
+     "f4e6018360fc"
+    ]
+   },
+   "expect": {
+    "root": "ab972c2ac69a76d424ab047e8904df0fccf0be72364993efd994e2e4e928ef52"
+   }
+  },
+  {
+   "id": "root-size-14",
+   "description": "RFC 6962 tree hash of the first n leaves",
+   "input": {
+    "leaves": [
+     "",
+     "00",
+     "10",
+     "2021",
+     "3031",
+     "40414243",
+     "5051525354555657",
+     "606162636465666768696a6b6c6d6e6f",
+     "32dc",
+     "b4a9fc",
+     "7a67ac4a",
+     "2ae67d63e2",
+     "f4e6018360fc",
+     "7fd1f8b32f3459"
+    ]
+   },
+   "expect": {
+    "root": "05a6b417433a88915d8493bd6645e06ad1dfdb0f5382c2c5da0ccebbd27c1cc0"
+   }
+  },
+  {
+   "id": "root-size-15",
+   "description": "RFC 6962 tree hash of the first n leaves",
+   "input": {
+    "leaves": [
+     "",
+     "00",
+     "10",
+     "2021",
+     "3031",
+     "40414243",
+     "5051525354555657",
+     "606162636465666768696a6b6c6d6e6f",
+     "32dc",
+     "b4a9fc",
+     "7a67ac4a",
+     "2ae67d63e2",
+     "f4e6018360fc",
+     "7fd1f8b32f3459",
+     "35"
+    ]
+   },
+   "expect": {
+    "root": "8f0b1ca041cd691dc4e6bd9515c3d55ff4eb25ffa4ea7ca90c712d43748c649d"
+   }
+  },
+  {
+   "id": "root-size-16",
+   "description": "RFC 6962 tree hash of the first n leaves",
+   "input": {
+    "leaves": [
+     "",
+     "00",
+     "10",
+     "2021",
+     "3031",
+     "40414243",
+     "5051525354555657",
+     "606162636465666768696a6b6c6d6e6f",
+     "32dc",
+     "b4a9fc",
+     "7a67ac4a",
+     "2ae67d63e2",
+     "f4e6018360fc",
+     "7fd1f8b32f3459",
+     "35",
+     "4f7c"
+    ]
+   },
+   "expect": {
+    "root": "fd0cf0b3f92a89b83db195f54a622afc72721058cbc065053acf2c78b19e434c"
+   }
+  },
+  {
+   "id": "root-size-17",
+   "description": "RFC 6962 tree hash of the first n leaves",
+   "input": {
+    "leaves": [
+     "",
+     "00",
+     "10",
+     "2021",
+     "3031",
+     "40414243",
+     "5051525354555657",
+     "606162636465666768696a6b6c6d6e6f",
+     "32dc",
+     "b4a9fc",
+     "7a67ac4a",
+     "2ae67d63e2",
+     "f4e6018360fc",
+     "7fd1f8b32f3459",
+     "35",
+     "4f7c",
+     "1e588b"
+    ]
+   },
+   "expect": {
+    "root": "a3d81a95980b6ec0ecababd994612add4e90da19ebafa892691b6e8c2d0dea69"
+   }
+  }
+ ]
+}

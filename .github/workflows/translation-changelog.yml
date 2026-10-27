@@ -1,0 +1,31 @@
+# SPDX-License-Identifier: Apache-2.0
+# Copyright The Ilorium Authors
+#
+# One version of each document; every change comes with a changelog entry
+# and the .es.md translation (CONTRIBUTING.md).
+# Warns (does not fail) when a .md changed without its .es.md.
+# Fails when a document changed without CHANGELOG.md.
+name: translation-changelog
+
+on:
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  translation-changelog:
+    name: translation-changelog
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out with history
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+
+      - name: Compare changed documents, translations and changelog
+        env:
+          BASE: ${{ github.event.pull_request.base.sha }}
+          HEAD: ${{ github.event.pull_request.head.sha }}
+        run: git diff --name-only "$BASE...$HEAD" | python3 -I tools/check_translation_changelog.py

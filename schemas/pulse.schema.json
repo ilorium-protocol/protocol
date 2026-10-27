@@ -1,0 +1,75 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://ilorium.com/schemas/1.0/pulse.schema.json",
+  "title": "Ilorium pulse",
+  "description": "A signed pulse. Evidence Format 1.0 (draft), section 8; semantics in the Pulse specification. Licensed under Apache-2.0.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "pulse", "organism", "domain", "seq", "beat", "trigger", "prev_pulse", "seen",
+    "checkpoint", "capture", "state", "recovery", "challenge", "translation_time", "signature"
+  ],
+  "properties": {
+    "pulse": { "const": "1.0" },
+    "organism": { "$ref": "common.schema.json#/$defs/label" },
+    "domain": { "$ref": "common.schema.json#/$defs/domain" },
+    "seq": { "type": "integer", "minimum": 1, "maximum": 9007199254740991 },
+    "beat": { "$ref": "common.schema.json#/$defs/uint" },
+    "trigger": { "enum": ["beats", "interval", "challenge"] },
+    "prev_pulse": {
+      "oneOf": [{ "$ref": "common.schema.json#/$defs/sha256" }, { "type": "null" }]
+    },
+    "seen": {
+      "type": "array",
+      "maxItems": 256,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["organism", "seq", "beat"],
+        "properties": {
+          "organism": { "$ref": "common.schema.json#/$defs/label" },
+          "seq": { "type": "integer", "minimum": 1, "maximum": 9007199254740991 },
+          "beat": { "$ref": "common.schema.json#/$defs/uint" }
+        }
+      }
+    },
+    "checkpoint": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["tree_size", "root", "witness_cosigned", "age_s"],
+      "properties": {
+        "tree_size": { "$ref": "common.schema.json#/$defs/uint" },
+        "root": { "$ref": "common.schema.json#/$defs/sha256" },
+        "witness_cosigned": { "type": "boolean" },
+        "age_s": { "$ref": "common.schema.json#/$defs/uint" }
+      }
+    },
+    "capture": {
+      "type": "object",
+      "maxProperties": 64,
+      "propertyNames": { "pattern": "^[a-z0-9][a-z0-9_.:-]{0,63}$" },
+      "additionalProperties": { "enum": ["ok", "degraded", "down"] }
+    },
+    "state": { "enum": ["active", "resting", "dormant", "released", "coalesced"] },
+    "recovery": { "enum": ["proven", "unknown", "not_restorable"] },
+    "challenge": {
+      "oneOf": [
+        { "type": "null" },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["value", "issued_at", "deadline_s"],
+          "properties": {
+            "value": { "type": "string", "pattern": "^[A-Za-z0-9+/]{22,86}={0,2}$" },
+            "issued_at": { "$ref": "common.schema.json#/$defs/time" },
+            "deadline_s": { "type": "integer", "minimum": 1, "maximum": 9007199254740991 }
+          }
+        }
+      ]
+    },
+    "translation_time": { "$ref": "common.schema.json#/$defs/time" },
+    "signature": { "$ref": "common.schema.json#/$defs/signature" }
+  },
+  "if": { "properties": { "trigger": { "const": "challenge" } }, "required": ["trigger"] },
+  "then": { "properties": { "challenge": { "type": "object" } } }
+}

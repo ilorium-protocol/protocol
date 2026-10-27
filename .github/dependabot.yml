@@ -1,0 +1,15 @@
+# Dependabot opens update pull requests. It never merges; a human does.
+version: 2
+updates:
+  - package-ecosystem: "pip"
+    directory: "/verifier"
+    schedule:
+      interval: "weekly"
+    labels:
+      - "editorial"
+  - package-ecosystem: "github-actions"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+    labels:
+      - "editorial"
